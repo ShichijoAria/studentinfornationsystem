@@ -1,0 +1,27 @@
+.logotitle{
+    color: #ABE4FF	;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 13px;
+    padding-bottom: 13px;
+}
+.ui.top.attached.stackable.menu{
+    background-color: #0c87df;
+}
+.head{
+    color: white!important;
+    font-weight: bold;
+}
+.icon.cubes{
+    color: #66cdff;
+}
+.icon.cube{
+    color: #FFE6A7;
+}
+.content.leftmenu{
+    padding-left: 32px!important;
+}
+.leftmenufont{
+    font-size: 17px!important;
+}
+

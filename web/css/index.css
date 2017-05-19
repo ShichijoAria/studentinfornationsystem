@@ -1,0 +1,13 @@
+.outer{
+    height: 100%;
+}
+.ui.top.attached.stackable.menu.grid{
+    height: 50px!important;
+}
+.ui.attached.segment{
+    position: absolute;
+    top: 50px;
+    bottom: 0px;
+    left: 0px;
+}
+
