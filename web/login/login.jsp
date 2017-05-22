@@ -27,20 +27,6 @@
     <link rel="stylesheet" href="<%=basePath%>css/login.css">
 </head>
 <body>
-<style type="text/css">
-    body {
-        background-color: #f7fafc;
-    }
-    body > .grid {
-        height: 100%;
-    }
-    .image {
-        margin-top: -100px;
-    }
-    .column {
-        max-width: 450px;
-    }
-</style>
 <canvas id="Mycanvas"></canvas>
 <script>
     //定义画布宽高和生成点的个数
@@ -155,7 +141,7 @@
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="账号">
+                        <input type="text" name="id" placeholder="账号">
                     </div>
                 </div>
                 <div class="field">

@@ -16,7 +16,6 @@ public class BaseServlet extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String methodName=req.getPathInfo();
         methodName=methodName.substring(1,methodName.length());
-        System.out.println(methodName);
         Method method = null;
 
         // 2、通过方法名和方法所需要的参数获得Method对象

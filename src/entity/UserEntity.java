@@ -12,6 +12,12 @@ public class UserEntity {
     public UserEntity() {
     }
 
+    public UserEntity(String type, String id, String password) {
+        this.type = type;
+        this.id = id;
+        this.password = password;
+    }
+
     public UserEntity(String type, String id, String name, String password) {
         this.type = type;
         this.id = id;
