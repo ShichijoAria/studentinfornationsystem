@@ -134,7 +134,7 @@
 <div class="logintitle">
     学生信息系统
 </div>
-<form action="/user/login" method="post">
+<form action="/SIS/user/login" method="post">
     <div class="logininput1">
         <div class="ui left icon input">
             <i class="user icon"></i>
