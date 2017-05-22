@@ -17,7 +17,7 @@ public class BaseServlet extends HttpServlet{
         String methodName=req.getPathInfo();
         methodName=methodName.substring(1,methodName.length());
         Method method = null;
-
+        System.out.println(methodName);
         // 2、通过方法名和方法所需要的参数获得Method对象
         try {
             method = this.getClass().getDeclaredMethod(methodName, HttpServletRequest.class, HttpServletResponse.class);

@@ -15,10 +15,22 @@ import java.io.IOException;
  */
 public class UserController extends BaseServlet{
 
+    private void hello(HttpServletRequest req, HttpServletResponse resp){
+        try {
+            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void login(HttpServletRequest req, HttpServletResponse resp){
         UserEntity user=new UserService().login(new UserEntity(req.getParameter("type"),req.getParameter("id"),req.getParameter("password")));
+        System.out.println(user+"5");
         if(user!=null) {
             try {
+                System.out.println(user.getId()+user.getPassword());
                 HttpSession session=req.getSession();
                 session.setAttribute("userId",user.getId());
                 session.setAttribute("userPassword",user.getPassword());

@@ -136,7 +136,7 @@
         <div class="logintitle">
             学生信息系统
         </div>
-        <form class="ui large form" action="/SIS/user/login" method="post">
+        <form class="ui large form" action="/SIS/login/login" method="post">
             <div class="ui segment" style="background-color: transparent;border: none">
                 <div class="field">
                     <div class="ui left icon input">
@@ -177,6 +177,9 @@
     </div>
 </div>
 <script>
+    $('.ui.checkbox')
+        .checkbox()
+    ;
     $(document)
         .ready(function() {
             $('.ui.form')
