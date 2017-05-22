@@ -1,52 +1,14 @@
 #Mycanvas{
     height: 100%;
 }
-.logininput1{
-    position: absolute;
-    top:250px;
-    width: 100%;
-    text-align: center;
-}
-.logininput2{
-    position: absolute;
-    top:300px;
-    width: 100%;
-    text-align: center;
-}
 .logininput3{
-    position: absolute;
-    top:350px;
-    width: 100%;
-    height: 45px!important;
-    text-align: center;
-    line-height: 45px;
-    vertical-align: middle;
-}
-.loginbutton{
-    position: absolute;
-    top:400px;
-    width: 100%;
+    margin: 10px 0px 10px 0px;
     text-align: center;
 }
 .logintitle{
-    position: absolute;
-    top:200px;
-    width: 100%;
     text-align: center;
     color: #464646;
     font-size: 50px;
     height: 50px!important;
     font-weight: bold;
-}
-.ui.left.icon.input{
-    width: 350px!important;
-    height: 45px !important;
-}
-body{
-    background-color: #ffffff;
-}
-.ui.primary.button{
-    width:350px;
-    height: 45px;
-    background-color: #217AA6;
 }

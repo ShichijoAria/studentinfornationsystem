@@ -27,6 +27,20 @@
     <link rel="stylesheet" href="<%=basePath%>css/login.css">
 </head>
 <body>
+<style type="text/css">
+    body {
+        background-color: #f7fafc;
+    }
+    body > .grid {
+        height: 100%;
+    }
+    .image {
+        margin-top: -100px;
+    }
+    .column {
+        max-width: 450px;
+    }
+</style>
 <canvas id="Mycanvas"></canvas>
 <script>
     //定义画布宽高和生成点的个数
@@ -131,45 +145,83 @@
         }, 16);
     }
 </script>
-<div class="logintitle">
-    学生信息系统
+<div class="ui middle aligned center aligned grid" style="position: absolute;top:0px;width: 100%">
+    <div class="column">
+        <div class="logintitle">
+            学生信息系统
+        </div>
+        <form class="ui large form" action="/SIS/user/login" method="post">
+            <div class="ui segment" style="background-color: transparent;border: none">
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="账号">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="密码">
+                    </div>
+                </div>
+                <div class="logininput3">
+                    <div class="ui left icon radio checkbox grid">
+                        <input type="radio" name="type" checked="checked" class="five wide column" value="1">
+                        <label>管理员</label>
+                    </div>
+                    <div class="ui left icon radio checkbox">
+                        <input type="radio" name="type" class="five wide column" value="2">
+                        <label>教师</label>
+                    </div>
+                    <div class="ui left icon radio checkbox">
+                        <input type="radio" name="type" class="five wide column" value="3">
+                        <label>学生</label>
+                    </div>
+                </div>
+                <div class="ui fluid large blue submit button">登录</div>
+            </div>
+
+            <div class="ui error message" style="background-color: transparent;border: none"></div>
+
+        </form>
+
+        <div class="ui message" style="background-color: transparent;border: none">
+            忘记密码? <a href="javascript:void(0);">请联系教务中心</a>
+        </div>
+    </div>
 </div>
-<form action="/SIS/user/login" method="post">
-    <div class="logininput1">
-        <div class="ui left icon input">
-            <i class="user icon"></i>
-            <input type="text" name="user.id" placeholder="学号">
-        </div>
-    </div>
-    <div class="logininput2">
-        <div class="ui left icon input">
-            <i class="lock icon"></i>
-            <input type="password" name="user.password" placeholder="密码">
-        </div>
-    </div>
-    <div class="logininput3">
-        <div class="ui left icon radio checkbox grid">
-            <input type="radio" name="user.type" checked="checked" class="five wide column" value="1">
-            <label>管理员</label>
-        </div>
-        <div class="ui left icon radio checkbox">
-            <input type="radio" name="user.type" class="five wide column" value="2">
-            <label>教师</label>
-        </div>
-        <div class="ui left icon radio checkbox">
-            <input type="radio" name="user.type" class="five wide column" value="3">
-            <label>学生</label>
-        </div>
-    </div>
-    <div class="loginbutton">
-        <button class="ui primary button">
-            登录
-        </button>
-    </div>
-</form>
 <script>
-    $('.ui.checkbox')
-        .checkbox()
+    $(document)
+        .ready(function() {
+            $('.ui.form')
+                .form({
+                    fields: {
+                        email: {
+                            identifier  : 'email',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : '请输入账号'
+                                }
+                            ]
+                        },
+                        password: {
+                            identifier  : 'password',
+                            rules: [
+                                {
+                                    type   : 'empty',
+                                    prompt : '请输入密码'
+                                },
+                                {
+                                    type   : 'length[6]',
+                                    prompt : '密码长度至少应大于6位'
+                                }
+                            ]
+                        }
+                    }
+                })
+            ;
+        })
     ;
 </script>
 </body>

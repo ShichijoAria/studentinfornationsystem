@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 public class UserController extends BaseServlet{
 
     private void login(HttpServletRequest req, HttpServletResponse resp){
-        System.out.println("login");
+        System.out.println(req.getParameterNames());
     }
 
     @Override
