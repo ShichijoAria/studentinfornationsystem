@@ -42,8 +42,6 @@ public class UserController extends BaseServlet{
             req.getSession().setAttribute("userPassword",user.getPassword());
             req.getSession().setAttribute("userName",user.getName());
             req.getSession().setAttribute("userType",user.getType());
-
-            System.out.println(req.getSession().getAttribute("userType")+"123");
             try {
                 resp.sendRedirect("/SIS/desktop/hello");
             } catch (IOException e) {
