@@ -23,11 +23,12 @@ public class LoginFilter implements Filter{
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session=req.getSession();
-        if(new UserService().login(new UserEntity((String)session.getAttribute("type"),(String)session.getAttribute("id"),(String)session.getAttribute("password")))!=null){
+        UserEntity u=new UserService().login(new UserEntity((String)session.getAttribute("userType"),(String)session.getAttribute("userId"),(String)session.getAttribute("userPassword")));
+            if(u!=null){
             filterChain.doFilter(servletRequest,servletResponse);
         }else {
-            resp.sendRedirect("/SIS/login/login.jsp");
-            return;
+            System.out.println(321);
+            resp.sendRedirect("/SIS/desktop/signIn");
         }
     }
 

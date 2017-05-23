@@ -25,20 +25,33 @@ public class UserController extends BaseServlet{
         }
     }
 
+    private void signIn(HttpServletRequest req, HttpServletResponse resp){
+        try {
+            req.getRequestDispatcher("/login/login.jsp").forward(req, resp);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void login(HttpServletRequest req, HttpServletResponse resp){
         UserEntity user=new UserService().login(new UserEntity(req.getParameter("type"),req.getParameter("id"),req.getParameter("password")));
-        System.out.println(user+"5");
         if(user!=null) {
+            req.getSession().setAttribute("userId",user.getId());
+            req.getSession().setAttribute("userPassword",user.getPassword());
+            req.getSession().setAttribute("userName",user.getName());
+            req.getSession().setAttribute("userType",user.getType());
+
+            System.out.println(req.getSession().getAttribute("userType")+"123");
             try {
-                System.out.println(user.getId()+user.getPassword());
-                HttpSession session=req.getSession();
-                session.setAttribute("userId",user.getId());
-                session.setAttribute("userPassword",user.getPassword());
-                session.setAttribute("userName",user.getName());
-                session.setAttribute("userType",user.getType());
-                req.getRequestDispatcher("/index.jsp").forward(req, resp);
-            } catch (ServletException e) {
+                resp.sendRedirect("/SIS/desktop/hello");
+            } catch (IOException e) {
                 e.printStackTrace();
+            }
+        }else{
+            try {
+                resp.sendRedirect("/SIS/desktop/signIn");
             } catch (IOException e) {
                 e.printStackTrace();
             }
