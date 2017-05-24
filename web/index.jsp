@@ -142,7 +142,7 @@
         return c-260;
     });
     $(".ui.bottom.attached.segment.pushable").height(function(n,c){
-        return c-Number($('.ui.massive.attached.stackable.menu.borderless').height())-1.6;
+        return c-Number($('.ui.massive.attached.stackable.menu.borderless').outerHeight());
     });
     </script>
 </html>

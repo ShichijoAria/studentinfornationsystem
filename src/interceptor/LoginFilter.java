@@ -27,7 +27,6 @@ public class LoginFilter implements Filter{
             if(u!=null){
             filterChain.doFilter(servletRequest,servletResponse);
         }else {
-            System.out.println(321);
             resp.sendRedirect("/SIS/desktop/signIn");
         }
     }

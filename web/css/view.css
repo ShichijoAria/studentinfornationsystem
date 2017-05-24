@@ -1,0 +1,10 @@
+#foot{
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    text-align: center;
+}
+.long.arrow.icon{
+    color: white;
+    margin-left: 5px!important;
+}

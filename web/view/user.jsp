@@ -34,18 +34,21 @@
 </head>
 <body>
 <form class="ui form" method="post" action="view.action" id="main">
-    <h3 class="ui header">密码管理</h3>
+    <h2 class="ui header">
+        <i class="unlock alternate icon"></i>
+        <div class="content">密码管理</div>
+        <div class="sub header">password manager</div>
+    </h2>
     <div  id="menu">
         <div class="ui small menu">
             <div class="right menu">
                 <div class="item">
-                    <div class="ui button compact teal" id="search" style="text-align: center">
+                    <div class="ui teal icon button">
                         <i class="search icon"></i>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
     <div class="ui segment"  id="segment">
         <table class="ui samll padded table">
@@ -69,22 +72,28 @@
             </tbody>
         </table>
     </div>
-    <div class="ui four item menu" style="text-align: center!important;width: 100%;position: fixed;bottom: 0px">
-        <div class="item">
-            <button class="ui blue basic button height" id="previous">上页</button>
-            <select class="ui search compact dropdown height">
-
-
+    <div class="ui tiny green inverted three item menu very padded" id="foot">
+        <a class="item">
+            <i class="long arrow left icon"></i>
+            上页
+        </a>
+        <a class="item">
+            <select class="ui dropdown compact">
+                <option value="">页数</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
             </select>
-            <div class="ui buttons height">
-                <button class="ui button" id="goto">跳转</button>
-            </div>
-            <button class="ui blue basic button height" id="next">下页</button>
-        </div>
+        </a>
+        <a class="item">
+            下页
+            <i class="long arrow right icon"></i>
+        </a>
     </div>
 </form>
 <script>
-
+    $('.ui.dropdown')
+        .dropdown()
+    ;/*下拉菜单初始化*/
 </script>
 </body>
 </html>
