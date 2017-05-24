@@ -43,10 +43,26 @@ a.title{
 .child{
     color: #AEB7C2;
 }
+.child:hover{
+    color: #AEB7C2;
+}
 .content.active{
     padding-bottom: 7.5px!important;
 }
 .pusher{
     background-color: #F3F5F8!important;
 }
-
+.indexmenu {
+    font-size: 20px!important;
+    font-weight: 100!important;
+    color: black!important;
+}
+.arrow{
+    color: black;
+}
+.arrow:hover{
+    color: black;
+}
+.icon.arrow .right{
+    font-size: 25px;
+}
