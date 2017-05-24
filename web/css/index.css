@@ -44,7 +44,7 @@ a.title{
     color: #AEB7C2;
 }
 .child:hover{
-    color: #AEB7C2;
+    color: white;
 }
 .content.active{
     padding-bottom: 7.5px!important;

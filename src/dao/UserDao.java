@@ -5,6 +5,8 @@ import util.BaseDao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ace on 2017/5/19.
@@ -37,5 +39,45 @@ public class UserDao extends BaseDao{
             }
         }
         return null;
+    }
+
+    public List<UserEntity> getList(UserEntity search){
+        String t="";
+        String sql1="SELECT id,'学生' AS type,name,password FROM t_student where id!='0' ";
+        String sql2="SELECT id,'教师' AS type,name,password FROM t_teacher ";
+        String sql3="SELECT id,'管理员' AS type,name,password FROM t_administrator ";
+        String sql= sql1 + "UNION " + sql2 + "UNION " + sql3;
+        if(search!=null) {
+            t += " id like '%";
+            t += search.getId() == null ? "" : search.getId();
+            t += "%' and name like '%";
+            t += search.getName() == null ? "" : search.getName();
+            t += "%' ";
+            sql1 += "and" + t;
+            sql2 += "where " + t;
+            sql3 += "where " + t;
+            if(search.getType()!=null) {
+                if (search.getType().equals("3")) {
+                    sql = sql1;
+                } else if (search.getType().equals("2")) {
+                    sql = sql2;
+                } else if (search.getType().equals("1")) {
+                    sql = sql3;
+                }
+            }
+        }
+        List<UserEntity> list = new ArrayList<UserEntity>();
+        ResultSet rs= this.executeQuery(sql);
+        try {
+            while(rs.next()){
+                list.add(new UserEntity(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            this.close();
+        }
+        return list.size()>0?list:null;
     }
 }
