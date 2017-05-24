@@ -1,13 +1,52 @@
-.outer{
-    height: 100%;
+.logo{
+    font-size: 36px;
 }
-.ui.top.attached.stackable.menu.grid{
-    height: 50px!important;
+.menu{
+    color: black;
+    font-weight: 100;
 }
-.ui.attached.segment{
-    position: absolute;
-    top: 50px;
-    bottom: 0px;
-    left: 0px;
+.menu:hover{
+    color: black;
+}
+.ui.inverted.labeled.icon.left.inline.vertical.sidebar.menu{
+    background-color: #2B333E;
+}
+.item.acc{
+    padding: 0 0 0 0!important;
+    font-size: 15px!important;
+}
+a.title{
+    padding: 18px 30px 18px 30px!important;
+}
+.title.active{
+    border-left-color: #00AAFF!important;
+    border-left: solid;
+    border-left-width: 5px;
+}
+.title{
+    border-left-color: transparent!important;
+    border-left: solid;
+    border-left-width: 5px;
+}
+.acc.item.active{
+    background-color: #252c35!important;
+}
+.indexmenu.active.item, .ui.menu .dropdown.item:hover{
+    background-color: white!important;
+}
+.padrig{
+    padding-right: 10px;
+}
+.myblue{
+    color: #00AAFF!important;
+}
+.child{
+    color: #AEB7C2;
+}
+.content.active{
+    padding-bottom: 7.5px!important;
+}
+.pusher{
+    background-color: #F3F5F8!important;
 }
 
