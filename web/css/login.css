@@ -21,6 +21,30 @@ body > .grid {
 .image {
     margin-top: -100px;
 }
-.column {
-    max-width: 450px;
+.column{
+    height: 450px;
+    min-width: 100px;
+}
+#login{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius:10px;
+    background-color: white;
+    padding: 0 30px 0 30px!important;
+}
+#picture{
+    border-top-right-radius: 5px;
+    border-bottom-rigth-radius: 5px;
+    background-color: rgba(99, 156, 185, 0.7);
+    background-image:url('/SIS/img/picture.png');
+    background-size: cover;
+}
+#login,#picture{
+    box-shadow: 2px 2px 5px #888888;
+
+}
+.ui.center.aligned.icon.header{
+    color: #566374;
+}
+.blue{
+    background-color: #00a0f0!important;
 }

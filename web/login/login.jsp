@@ -130,50 +130,48 @@
         }, 16);
     }
 </script>
-<div class="ui middle aligned center aligned grid" style="position: absolute;top:0px;width: 100%">
-    <div class="column">
-        <div class="logintitle">
+<div class="ui middle aligned center Stackable aligned grid" style="position: absolute;top:0px;width: 70%;left: 15%">
+    <div id="login" class="six wide column">
+        <h2 class="ui center aligned icon header">
+            <i class="circular users icon"></i>
             学生信息系统
-        </div>
+        </h2>
         <form class="ui large form" action="/SIS/desktop/login" method="post">
-            <div class="ui segment" style="background-color: white;border: none">
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="user icon"></i>
-                        <input type="text" name="id" placeholder="账号">
-                    </div>
+            <div class="field">
+                <div class="ui mini left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="id" placeholder="账号">
                 </div>
-                <div class="field">
-                    <div class="ui left icon input">
-                        <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="密码">
-                    </div>
-                </div>
-                <div class="logininput3">
-                    <div class="ui left icon radio checkbox grid">
-                        <input type="radio" name="type" checked="checked" class="five wide column" value="1">
-                        <label>管理员</label>
-                    </div>
-                    <div class="ui left icon radio checkbox">
-                        <input type="radio" name="type" class="five wide column" value="2">
-                        <label>教师</label>
-                    </div>
-                    <div class="ui left icon radio checkbox">
-                        <input type="radio" name="type" class="five wide column" value="3">
-                        <label>学生</label>
-                    </div>
-                </div>
-                <div class="ui fluid large blue submit button">登录</div>
             </div>
-
+            <div class="field">
+                <div class="ui left icon mini input">
+                    <i class="lock icon"></i>
+                    <input type="password" name="password" placeholder="密码">
+                </div>
+            </div>
+            <div class="logininput3">
+                <div class="ui left icon radio checkbox grid">
+                    <input type="radio" name="type" checked="checked" class="five wide column" value="1">
+                    <label>管理员</label>
+                </div>
+                <div class="ui left icon radio checkbox">
+                    <input type="radio" name="type" class="five wide column" value="2">
+                    <label>教师</label>
+                </div>
+                <div class="ui left icon radio checkbox">
+                    <input type="radio" name="type" class="five wide column" value="3">
+                    <label>学生</label>
+                </div>
+            </div>
+            <div class="ui fluid large blue submit button">登录</div>
             <div class="ui error message" style="background-color: transparent;border: none"></div>
-
         </form>
 
         <div class="ui message" style="background-color: transparent;border: none">
             忘记密码? <a href="javascript:void(0);">请联系教务中心</a>
         </div>
     </div>
+    <div id="picture" class="computer only ten wide column">44</div>
 </div>
 <script>
     $('.ui.checkbox')
