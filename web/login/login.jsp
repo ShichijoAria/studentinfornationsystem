@@ -136,7 +136,7 @@
             学生信息系统
         </div>
         <form class="ui large form" action="/SIS/desktop/login" method="post">
-            <div class="ui segment" style="background-color: transparent;border: none">
+            <div class="ui segment" style="background-color: white;border: none">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>

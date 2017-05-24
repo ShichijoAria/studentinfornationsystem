@@ -15,6 +15,10 @@ import java.io.IOException;
  */
 public class UserController extends BaseServlet{
 
+    private void view(HttpServletRequest req, HttpServletResponse resp){
+
+    }
+
     private void hello(HttpServletRequest req, HttpServletResponse resp){
         try {
             req.getRequestDispatcher("/index.jsp").forward(req, resp);

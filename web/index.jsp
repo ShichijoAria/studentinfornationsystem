@@ -40,7 +40,7 @@
     </div>
     <div class="menu right">
     <div class="ui dropdown item indexmenu">
-    <i class="user icon"></i>user
+    <i class="user icon"></i>${sessionScope.userName}
     <div class="menu">
     <a class="item"><i class="icon setting"></i> 个人信息</a>
     <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
@@ -70,10 +70,7 @@
     <div class="pusher">
     <div class="ui basic segment">
     <h3 class="ui header">Application Content</h3>
-    <i class="icon arrow circle outline left icon"></i>
-    <p></p>
-    <p></p>
-    <p></p>
+      <iframe id="myframe" src="/SIS/welcome/welcome.html" height="100%" width="100%" frameborder="no" border="0" ></iframe>
     </div>
     </div>
     </div>
