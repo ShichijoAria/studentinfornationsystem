@@ -16,6 +16,7 @@ body > .grid {
     background-color: white;
     min-width: 100px;
     height: auto;
+    min-height: 450px;
 }
 #picture{
     border-top-right-radius: 5px;
@@ -23,10 +24,11 @@ body > .grid {
     background-color: rgba(99, 156, 185, 0.7);
     background-image:url('/SIS/img/picture.png');
     background-size: cover;
-    height: 100%;
+    height: 400px;
 }
 #login,#picture{
     box-shadow: 2px 2px 5px #888888;
+    display: none;
 }
 .ui.center.aligned.icon.header{
     color: #566374;

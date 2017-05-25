@@ -9,6 +9,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta charset="UTF-8">
     <title>学生信息系统</title>
     <script src="../modules/jquery.js"></script>
@@ -19,38 +22,55 @@
     <body style="background-color: #F3F5F8!important;">
     <!-- 容器 -->
     <div class="container" style="height: 100%">
-    <div class="ui massive attached stackable menu borderless">
-    <div class="ui tiny header item indexmenu" style="width:220px;padding-right: 0px">
-    <i class="circular users icon indexmenu"></i>
-    <div class="content">
-    学生信息系统
-    </div>
-    </div>
-    <div class="item indexmenu" style="width:40px">
-    <a id="arrow" href="javascript:void(0);"><i class="icon arrow left"></i></a>
-    </div>
-    <div class="item indexmenu">
-    <a href="javascript:void(0);" class="menu"><i class="home icon"></i> 主页</a>
-    </div>
-    <div class="item indexmenu">
-    <div class="ui input action">
-    <input type="text" placeholder="最新资讯……">
-    <div class="ui blue button">搜索</div>
-    </div>
-    </div>
-    <div class="menu right">
-    <div class="ui dropdown item indexmenu">
-    <i class="user icon"></i>${sessionScope.userName}
-    <div class="menu">
-    <a class="item"><i class="icon setting"></i> 个人信息</a>
-    <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
-    </div>
-    </div>
-    <div class="ui item">
-    <i class="icon help"></i>
-    帮助
-    </div>
-    </div>
+    <div class="ui small massive attached stackable menu borderless grid one column">
+      <div class="ui small menu borderless column computer only" style="padding: 0 0 0 0">
+        <div class="ui tiny header item indexmenu" style="width:220px;padding-right: 0px">
+          <i class="circular users icon indexmenu"></i>
+          <div class="content">
+          学生信息系统
+          </div>
+        </div>
+        <div class="item indexmenu" style="width:40px">
+        <a id="arrow" href="javascript:void(0);"><i class="icon arrow left"></i></a>
+        </div>
+        <div class="item indexmenu">
+        <a href="javascript:void(0);" class="menu"><i class="home icon"></i> 主页</a>
+        </div>
+        <div class="item indexmenu">
+        <div class="ui input action">
+        <input type="text" placeholder="最新资讯……">
+        <div class="ui blue button">搜索</div>
+        </div>
+        </div>
+        <div class="menu right">
+        <div class="ui dropdown item indexmenu">
+        <i class="user icon"></i>${sessionScope.userName}
+        <div class="menu">
+        <a class="item"><i class="icon setting"></i> 个人信息</a>
+        <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
+        </div>
+        </div>
+        <div class="ui item">
+        <i class="icon help"></i>
+        帮助
+        </div>
+        </div>
+      </div>
+      <div class="ui three item small menu borderless mobile only column" style="background-color: white">
+        <div class="item indexmenu" style="width:33%!important">
+          <a id="arrow2" href="javascript:void(0);"><i class="circular outline icon arrow left"></i></a>
+        </div>
+        <div class="item indexmenu" style="width: 33%!important;">
+          <i class="circular users icon"></i>
+        </div>
+        <div class="ui icon floating item indexmenu dropdown" style="width: 33%!important">
+          <i class="circular user icon"></i>
+          <div class="menu">
+            <a class="item"><i class="icon setting"></i> 个人信息</a>
+            <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="ui bottom attached segment pushable" style="background-color: #F3F5F8!important;">
     <div class="ui inverted labeled icon left inline vertical sidebar menu accordion" style="width: 260px">
@@ -69,7 +89,7 @@
     </div>
     <div class="pusher">
     <div class="ui basic segment">
-      <iframe class="ui segment" id="myframe" src="/SIS/user/view" height="95%" width="100%-260px" frameborder="no" border="0" ></iframe>
+      <iframe class="ui segment" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>
     </div>
     </div>
     </div>
@@ -95,9 +115,7 @@
         useLegacy:true,
         duration:100
     })
-    .sidebar('attach events', '.context.example .menu .item')
-    ;
-    $('#arrow').click(function () {
+    $('#arrow,#arrow2').click(function () {
       $('.ui.sidebar')
       .sidebar('toggle')
       ;
@@ -139,10 +157,23 @@
     }
     });
     $(".pusher").width(function(n,c){
-        return c-260;
+        if($(".pusher").width()>300)
+          return $('body').outerWidth()-260;
     });
-    $(".ui.bottom.attached.segment.pushable").height(function(n,c){
-        return c-Number($('.ui.massive.attached.stackable.menu.borderless').outerHeight());
+    $(window).resize(function(){//缩放事件
+        $(".pusher").width(function(n,c){
+            return $('body').outerWidth()-260;
+        });
+        checkHeight();
+        if(navigator.userAgent.match(/mobile/i)){
+            alert(654)
+        }
     });
+    function checkHeight() {
+        $(".ui.bottom.attached.segment.pushable").height(function(n,c){
+            return $('.container').outerHeight()-Number($('.ui.massive.attached.stackable.menu.borderless').outerHeight()+2);
+        });
+    }
+    checkHeight();
     </script>
 </html>

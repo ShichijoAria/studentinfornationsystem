@@ -15,7 +15,9 @@
 %>
 <html>
 <head>
-    <%--base href="<%=basePath%>">--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -27,10 +29,8 @@
     <script src="../modules/jquery.js"></script>
     <link rel="stylesheet" href="../modules/semantic.min.css">
     <script src="../modules/semantic.min.js"></script>
-    <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/view.css">
-    <script src="../js/util.js"></script>
 </head>
 <body>
 <form class="ui form" method="post" action="view.action" id="main">
@@ -65,10 +65,6 @@
             </tr>
             </thead>
             <tbody>
-
-
-
-
             </tbody>
         </table>
     </div>
@@ -91,9 +87,14 @@
     </div>
 </form>
 <script>
+
     $('.ui.dropdown')
         .dropdown()
     ;/*下拉菜单初始化*/
+    $(window).resize(function() {//缩放事件
+
+        $('#foot').outerWidth($('body').outerWidth())
+    });
 </script>
 </body>
 </html>

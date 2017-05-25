@@ -12,6 +12,9 @@
 %>
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -133,7 +136,7 @@
     <div id="login" class="six wide column">
         <h2 class="ui center aligned icon header">
             <i class="circular users icon"></i>
-            学生信息系统
+            SIS
         </h2>
         <form class="ui large form" action="/SIS/desktop/login" method="post">
             <div class="field">
@@ -148,16 +151,16 @@
                     <input type="password" name="password" placeholder="密码">
                 </div>
             </div>
-            <div class="ui centered grid field">
-                <div class="ui left icon radio checkbox">
+            <div class="ui three column centered Stackable grid field">
+                <div class="ui left icon radio checkbox column">
                     <input type="radio" name="type" checked="checked" value="1">
                     <label>管理员</label>
                 </div>
-                <div class="ui left icon radio checkbox">
+                <div class="ui left icon radio checkbox column">
                     <input type="radio" name="type"value="2">
                     <label>教师</label>
                 </div>
-                <div class="ui left icon radio checkbox">
+                <div class="ui left icon radio checkbox column">
                     <input type="radio" name="type"value="3">
                     <label>学生</label>
                 </div>
@@ -171,15 +174,24 @@
             忘记密码? <a href="javascript:void(0);">请联系教务中心</a>
         </div>
     </div>
-    <div id="picture" class="computer only ten wide column">44</div>
+    <div id="picture" class="computer only ten wide column" style="height: 100%">
+        <div class="content" style="margin-top: 30%;">
+            <h2 class="ui header" style="height:100%;line-height: 100%;vertical-align: middle;color: white;margin-left: 5%;font-weight: 100">
+                智能化OS
+                <div class="sub header" style="color: white;margin-left: 15%">欢迎使用学生信息系统</div>
+            </h2>
+        </div>
+    </div>
 </div>
 <script>
+    $(window).resize(function(){
+        $('#picture').outerHeight($('#login').outerHeight())
+    });
     $('.ui.checkbox')
         .checkbox()
     ;
-    window.onload = function() {
-        $('#picture').outerHeight($('#login').outerHeight())
-    };
+    $('#picture').outerHeight($('#login').outerHeight()).fadeIn();
+    $('#login').fadeIn();
     $(function(){
         document.onkeydown = function(e){
             var ev = document.all ? window.event : e;
