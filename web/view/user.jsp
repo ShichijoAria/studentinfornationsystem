@@ -11,7 +11,6 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-    String center="style=\"text-align: center;\"";
 %>
 <html>
 <head>
@@ -33,7 +32,18 @@
     <link rel="stylesheet" href="../css/view.css">
 </head>
 <body>
-<form class="ui form" method="post" action="view.action" id="main">
+<div class="ui top left vertical menu sidebar">
+    <a class="item">
+        Item 1
+    </a>
+    <a class="item">
+        Item 2
+    </a>
+    <a class="item">
+        Item 3
+    </a>
+</div>
+<form class="pusher ui form" method="post" action="view.action" id="main">
     <h2 class="ui header">
         <i class="unlock alternate icon"></i>
         <div class="content">密码管理</div>
@@ -51,17 +61,17 @@
         </div>
     </div>
     <div class="ui segment"  id="segment">
-        <table class="ui samll padded table">
+        <table class="very compact small unstackable ui single line samll padded table">
             <thead>
-            <tr>
+            <tr class="center aligned">
                 <th>
                     <div class="ui checkbox">
                         <input type="checkbox" name="switch" id="checkall"><label></label>
                     </div>
                 </th>
-                <th <%=center%>>用户编号</th>
-                <th <%=center%>>用户名称</th>
-                <th <%=center%>>用户权限</th>
+                <th class="six wide">用户编号</th>
+                <th class="five wide">用户名称</th>
+                <th class="five wide">用户权限</th>
             </tr>
             </thead>
             <tbody>
@@ -87,14 +97,27 @@
     </div>
 </form>
 <script>
-
+    $('form').outerWidth($('body').outerWidth()-20)
+    $('table').outerWidth($('.ui.segment').width())
+    $('#foot').outerWidth($('body').outerWidth()-20)
     $('.ui.dropdown')
         .dropdown()
     ;/*下拉菜单初始化*/
     $(window).resize(function() {//缩放事件
-
-        $('#foot').outerWidth($('body').outerWidth())
+        $('form').outerWidth($('body').outerWidth()-20)
+        $('table').outerWidth($('.ui.segment').width())
+        $('#foot').outerWidth($('body').outerWidth()-20)
     });
+    $('.ui.sidebar')
+    .sidebar({
+        context: $('body'),
+        closable:false,
+        dimPage:false,
+        useLegacy:true,
+        duration:100,
+    })
+    $('.ui.sidebar')
+        .sidebar('toggle')
 </script>
 </body>
 </html>
