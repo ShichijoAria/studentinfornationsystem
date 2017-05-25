@@ -22,7 +22,6 @@
     <script src="<%=basePath%>modules/jquery.js"></script>
     <link rel="stylesheet" href="<%=basePath%>modules/semantic.min.css">
     <script src="<%=basePath%>modules/semantic.min.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>css/general.css">
     <link rel="stylesheet" href="<%=basePath%>css/login.css">
 </head>
 <body>
@@ -130,7 +129,7 @@
         }, 16);
     }
 </script>
-<div class="ui middle aligned center Stackable aligned grid" style="position: absolute;top:0px;width: 70%;left: 15%">
+<div class="ui middle aligned center Stackable aligned centered grid" style="position: fixed;top:0px;width: 70%;left: 15%">
     <div id="login" class="six wide column">
         <h2 class="ui center aligned icon header">
             <i class="circular users icon"></i>
@@ -149,22 +148,23 @@
                     <input type="password" name="password" placeholder="密码">
                 </div>
             </div>
-            <div class="logininput3">
-                <div class="ui left icon radio checkbox grid">
-                    <input type="radio" name="type" checked="checked" class="five wide column" value="1">
+            <div class="ui centered grid field">
+                <div class="ui left icon radio checkbox">
+                    <input type="radio" name="type" checked="checked" value="1">
                     <label>管理员</label>
                 </div>
                 <div class="ui left icon radio checkbox">
-                    <input type="radio" name="type" class="five wide column" value="2">
+                    <input type="radio" name="type"value="2">
                     <label>教师</label>
                 </div>
                 <div class="ui left icon radio checkbox">
-                    <input type="radio" name="type" class="five wide column" value="3">
+                    <input type="radio" name="type"value="3">
                     <label>学生</label>
                 </div>
             </div>
-            <div class="ui fluid large blue submit button">登录</div>
-            <div class="ui error message" style="background-color: transparent;border: none"></div>
+            <div class="ui fluid large blue submit button" onclick="checkHeight()">登录</div>
+            <div class="ui error message">
+            </div>
         </form>
 
         <div class="ui message" style="background-color: transparent;border: none">
@@ -177,13 +177,31 @@
     $('.ui.checkbox')
         .checkbox()
     ;
+    window.onload = function() {
+        $('#picture').outerHeight($('#login').outerHeight())
+    };
+    $(function(){
+        document.onkeydown = function(e){
+            var ev = document.all ? window.event : e;
+            if(ev.keyCode==13) {
+                $('#picture').outerHeight($('#login').outerHeight())
+            }
+        }
+    });//监听回车事件
+    function checkHeight() {
+        $(document)
+            .ready(function() {
+                $('#picture').outerHeight($('#login').outerHeight())
+            })
+        ;
+    }
     $(document)
         .ready(function() {
             $('.ui.form')
                 .form({
                     fields: {
-                        email: {
-                            identifier  : 'email',
+                        id: {
+                            identifier  : 'id',
                             rules: [
                                 {
                                     type   : 'empty',
