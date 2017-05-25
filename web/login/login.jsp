@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <title>学生信息系统</title>
     <script src="<%=basePath%>modules/jquery.js"></script>
-    <link rel="stylesheet" href="<%=basePath%>modules/semantic.min.css">
+    <link rel="stylesheet" href="<%=basePath%>modules/semantic.css">
     <script src="<%=basePath%>modules/semantic.min.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/login.css">
 </head>

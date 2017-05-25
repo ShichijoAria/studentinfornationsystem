@@ -26,42 +26,77 @@
     <meta charset="UTF-8">
     <title>学生信息系统</title>
     <script src="../modules/jquery.js"></script>
-    <link rel="stylesheet" href="../modules/semantic.min.css">
+    <link rel="stylesheet" href="../modules/semantic.css">
     <script src="../modules/semantic.min.js"></script>
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/view.css">
+    <link rel="stylesheet" href="../css/general.css">
 </head>
-<body>
+<body style="background-color: #fff;">
 <div class="ui top left vertical menu sidebar">
-    <a class="item">
-        Item 1
-    </a>
-    <a class="item">
-        Item 2
-    </a>
-    <a class="item">
-        Item 3
-    </a>
+    <div class="content">
+        <div class="ui grid stackable centered segment three column vertical container">
+                <div class="column">
+                    <div class="ui right pointing black basic label">
+                        用户编号
+                    </div>
+                    <div class="ui input">
+                        <input class="input" type="text" name="search.id" value="${search.id}">
+                        <i class="icon"></i>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui right pointing black basic label">
+                        用户名称
+                    </div>
+                    <div class="ui input">
+                        <input class="input" type="text" name="search.name" value="${search.name}">
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="ui right pointing black basic label">
+                        用户角色
+                    </div>
+                    <div class="ui input">
+                        <select class="ui fluid dropdown" name="search.type">
+                            <option value="">权限</option>
+                            <option value="3"
+                            >学生</option>
+                            <option value="2"
+                            >教师</option>
+                            <option value="1"
+                            >管理员</option>
+                        </select>
+                    </div>
+                </div>
+            <div style="text-align: center;width:100%;padding-top: 5%">
+                <button class="ui button blue">查询</button>
+                <a class="ui button" id="reset">重置</a>
+            </div>
+        </div>
+    </div>
 </div>
-<form class="pusher ui form" method="post" action="view.action" id="main">
-    <h2 class="ui header">
-        <i class="unlock alternate icon"></i>
-        <div class="content">密码管理</div>
-        <div class="sub header">password manager</div>
-    </h2>
-    <div  id="menu">
-        <div class="ui small menu">
-            <div class="right menu">
-                <div class="item">
-                    <div class="ui teal icon button">
-                        <i class="search icon"></i>
+<form class="ui form pusher" method="post" action="view.action" id="main">
+    <div>
+        <h2 class="ui header">
+            <i class="unlock alternate icon"></i>
+            <div class="content">密码管理</div>
+            <div class="sub header">password manager</div>
+        </h2>
+        <div  id="menu">
+            <div class="ui small menu">
+                <div class="right menu">
+                    <div class="item">
+                        <div id="search" class="ui teal icon button">
+                            <i class="search icon"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="ui segment"  id="segment">
-        <table class="very compact small unstackable ui single line samll padded table">
+        <table class="very small unstackable compact ui samll table">
             <thead>
             <tr class="center aligned">
                 <th>
@@ -71,14 +106,14 @@
                 </th>
                 <th class="six wide">用户编号</th>
                 <th class="five wide">用户名称</th>
-                <th class="five wide">用户权限</th>
+                <th class="five wide">用户角色</th>
             </tr>
             </thead>
             <tbody>
             </tbody>
         </table>
     </div>
-    <div class="ui tiny green inverted three item menu very padded" id="foot">
+    <div class="ui tiny green inverted three item menu " id="foot">
         <a class="item">
             <i class="long arrow left icon"></i>
             上页
@@ -97,27 +132,29 @@
     </div>
 </form>
 <script>
-    $('form').outerWidth($('body').outerWidth()-20)
-    $('table').outerWidth($('.ui.segment').width())
-    $('#foot').outerWidth($('body').outerWidth()-20)
+    $('form').outerWidth($('body').width())
+    $('#foot').width($('body').width())
+    $('.ui.input').outerWidth($('input').outerWidth())
+    $('.ui.grid.stackable.centered.segment.three.column.vertical.container').outerWidth($('form').outerWidth())
     $('.ui.dropdown')
         .dropdown()
     ;/*下拉菜单初始化*/
     $(window).resize(function() {//缩放事件
-        $('form').outerWidth($('body').outerWidth()-20)
-        $('table').outerWidth($('.ui.segment').width())
-        $('#foot').outerWidth($('body').outerWidth()-20)
+        $('form').outerWidth($('body').width())
+        $('#foot').width($('body').width())
+        $('.ui.input').outerWidth($('input').outerWidth())
     });
     $('.ui.sidebar')
     .sidebar({
         context: $('body'),
-        closable:false,
         dimPage:false,
         useLegacy:true,
-        duration:100,
     })
-    $('.ui.sidebar')
-        .sidebar('toggle')
+    $('#search').click(function () {
+        $('.ui.sidebar')
+            .sidebar('toggle')
+    })
+
 </script>
 </body>
 </html>

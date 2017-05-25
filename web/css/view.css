@@ -1,10 +1,29 @@
 #foot{
-    width: 100%;
+    min-width: 300px;
     position: fixed;
     bottom: 0px;
+    left: 0px;
     text-align: center;
 }
 .long.arrow.icon{
     color: white;
     margin-left: 5px!important;
+}
+.ui.grid.centered.segment.vertical{
+    padding-bottom: 14px!important;
+}
+.pusher{
+    background-color: white!important;
+}
+h2{
+    margin-top: 10px!important;
+}
+.ui.segment{
+    padding: 0 0 0 0!important;
+}
+table{
+    width: 100%!important;
+}
+form{
+    margin: 0 0 0 0!important;
 }

@@ -15,15 +15,16 @@
     <meta charset="UTF-8">
     <title>学生信息系统</title>
     <script src="../modules/jquery.js"></script>
-    <link rel="stylesheet" href="../modules/semantic.min.css">
+    <link rel="stylesheet" href="../modules/semantic.css">
     <script src="../modules/semantic.min.js"></script>
     <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/general.css">
   </head>
     <body style="background-color: #F3F5F8!important;">
     <!-- 容器 -->
     <div class="container" style="height: 100%">
     <div class="ui small massive attached stackable menu borderless grid one column">
-      <div class="ui small menu borderless column computer only" style="padding: 0 0 0 0">
+      <div class="ui small menu borderless large screen tablet column computer only" style="padding: 0 0 0 0">
         <div class="ui tiny header item indexmenu" style="width:220px;padding-right: 0px">
           <i class="circular users icon indexmenu"></i>
           <div class="content">
@@ -89,7 +90,7 @@
     </div>
     <div class="pusher">
     <div class="ui basic segment">
-      <iframe class="ui segment" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>
+      <iframe class="" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>
     </div>
     </div>
     </div>
@@ -165,9 +166,6 @@
             return $('body').outerWidth()-260;
         });
         checkHeight();
-        if(navigator.userAgent.match(/mobile/i)){
-            alert(654)
-        }
     });
     function checkHeight() {
         $(".ui.bottom.attached.segment.pushable").height(function(n,c){
