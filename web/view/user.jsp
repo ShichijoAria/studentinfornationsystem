@@ -34,6 +34,9 @@
 </head>
 <body style="background-color: #fff;">
 <div class="ui top left vertical menu sidebar">
+    <a class="ui right grey large corner label">
+        <i class="close icon"></i>
+    </a>
     <div class="content">
         <div class="ui grid stackable centered segment three column vertical container">
                 <div class="column">
@@ -147,10 +150,9 @@
     $('.ui.sidebar')
     .sidebar({
         context: $('body'),
-        dimPage:false,
         useLegacy:true,
     })
-    $('#search').click(function () {
+    $('#search,.close.icon').click(function () {
         $('.ui.sidebar')
             .sidebar('toggle')
     })

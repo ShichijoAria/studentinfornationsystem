@@ -7,6 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+  String path = request.getContextPath();
+  String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -14,11 +18,11 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta charset="UTF-8">
     <title>学生信息系统</title>
-    <script src="../modules/jquery.js"></script>
-    <link rel="stylesheet" href="../modules/semantic.css">
-    <script src="../modules/semantic.min.js"></script>
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/general.css">
+    <script src="<%=basePath%>modules/jquery.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>modules/semantic.css">
+    <script src="<%=basePath%>modules/semantic.min.js"></script>
+    <link rel="stylesheet" href="<%=basePath%>css/index.css">
+    <link rel="stylesheet" href="<%=basePath%>css/general.css">
   </head>
     <body style="background-color: #F3F5F8!important;">
     <!-- 容器 -->

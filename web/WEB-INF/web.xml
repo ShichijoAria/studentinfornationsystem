@@ -40,6 +40,6 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>desktop/signIn</welcome-file>
+        <welcome-file>desktop/hello</welcome-file>
     </welcome-file-list>
 </web-app>
