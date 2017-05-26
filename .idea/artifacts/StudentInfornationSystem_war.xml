@@ -3,6 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/StudentInfornationSystem_war</output-path>
     <root id="archive" name="StudentInfornationSystem_war.war">
       <element id="artifact" artifact-name="StudentInfornationSystem:war exploded" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jstl" />
+        </element>
+      </element>
     </root>
   </artifact>
 </component>

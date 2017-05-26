@@ -27,3 +27,12 @@ table{
 form{
     margin: 0 0 0 0!important;
 }
+.sub.header{
+    padding-left: 30px!important;
+}
+a.item.foot{
+    padding: 0 0 0 0!important;
+}
+table{
+    margin-bottom: 20px!important;
+}

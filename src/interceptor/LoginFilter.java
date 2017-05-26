@@ -1,7 +1,7 @@
 package interceptor;
 
 import entity.UserEntity;
-import service.UserService;
+import service.impl.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

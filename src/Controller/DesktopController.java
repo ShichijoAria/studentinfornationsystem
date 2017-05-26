@@ -1,7 +1,7 @@
 package Controller;
 
 import entity.UserEntity;
-import service.UserService;
+import service.impl.UserService;
 import util.BaseServlet;
 
 import javax.servlet.ServletException;

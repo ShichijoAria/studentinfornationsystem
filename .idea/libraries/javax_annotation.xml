@@ -10,7 +10,6 @@
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/javax.transaction.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/jstl.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

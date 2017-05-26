@@ -39,39 +39,39 @@
     </a>
     <div class="content">
         <div class="ui grid stackable centered segment three column vertical container">
-                <div class="column">
-                    <div class="ui right pointing black basic label">
-                        用户编号
-                    </div>
-                    <div class="ui input">
-                        <input class="input" type="text" name="search.id" value="${search.id}">
-                        <i class="icon"></i>
-                    </div>
+            <div class="column">
+                <div class="ui right pointing black basic label">
+                    用户编号
                 </div>
-                <div class="column">
-                    <div class="ui right pointing black basic label">
-                        用户名称
-                    </div>
-                    <div class="ui input">
-                        <input class="input" type="text" name="search.name" value="${search.name}">
-                    </div>
+                <div class="ui input">
+                    <input class="input" type="text" name="search.id" value="${search.id}">
+                    <i class="icon"></i>
                 </div>
-                <div class="column">
-                    <div class="ui right pointing black basic label">
-                        用户角色
-                    </div>
-                    <div class="ui input">
-                        <select class="ui fluid dropdown" name="search.type">
-                            <option value="">权限</option>
-                            <option value="3"
-                            >学生</option>
-                            <option value="2"
-                            >教师</option>
-                            <option value="1"
-                            >管理员</option>
-                        </select>
-                    </div>
+            </div>
+            <div class="column">
+                <div class="ui right pointing black basic label">
+                    用户名称
                 </div>
+                <div class="ui input">
+                    <input class="input" type="text" name="search.name" value="${search.name}">
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui right pointing black basic label">
+                    用户角色
+                </div>
+                <div class="ui input">
+                    <select class="ui fluid dropdown" name="search.type">
+                        <option value="">权限</option>
+                        <option value="3"
+                        >学生</option>
+                        <option value="2"
+                        >教师</option>
+                        <option value="1"
+                        >管理员</option>
+                    </select>
+                </div>
+            </div>
             <div style="text-align: center;width:100%;padding-top: 5%">
                 <button class="ui button blue">查询</button>
                 <a class="ui button" id="reset">重置</a>
@@ -82,9 +82,9 @@
 <form class="ui form pusher" method="post" action="view.action" id="main">
     <div>
         <h2 class="ui header">
-            <i class="unlock alternate icon"></i>
-            <div class="content">密码管理</div>
-            <div class="sub header">Password Manager</div>
+            <i class="sitemap icon"></i>
+            <div class="content">课程查询</div>
+            <div class="sub header">Course Query</div>
         </h2>
         <div  id="menu">
             <div class="ui small menu">
@@ -107,9 +107,8 @@
                         <input type="checkbox" name="switch" id="checkall"><label></label>
                     </div>
                 </th>
-                <th class="six wide">用户编号</th>
-                <th class="five wide">用户名称</th>
-                <th class="five wide">用户角色</th>
+                <th class="eight wide">课程编号</th>
+                <th class="eight wide">课程名称</th>
             </tr>
             </thead>
             <tbody>
@@ -122,7 +121,6 @@
                     </td>
                     <td>${bean.id}</td>
                     <td>${bean.name}</td>
-                    <td>${bean.type}</td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -160,10 +158,10 @@
         $('.ui.input').outerWidth($('input').outerWidth())
     });
     $('.ui.sidebar')
-    .sidebar({
-        context: $('body'),
-        useLegacy:true,
-    })
+        .sidebar({
+            context: $('body'),
+            useLegacy:true,
+        })
     $('#search,.close.icon').click(function () {
         $('.ui.sidebar')
             .sidebar('toggle')

@@ -77,20 +77,30 @@
         </div>
       </div>
     </div>
-    <div class="ui bottom attached segment pushable" style="background-color: #F3F5F8!important;">
-    <div class="ui inverted labeled icon left inline vertical sidebar menu accordion" style="width: 260px">
-    <div class="item acc">
+      <div class="ui bottom attached segment pushable" style="background-color: #F3F5F8!important;">
+      <div class="ui inverted labeled icon left inline vertical sidebar menu accordion" style="width: 260px">
+      <div class="item acc">
     <a class="title" style="color:#AEB7C2;">
     <i class="icon users padrig"></i>
     用户管理
     <i class="dropdown icon"></i>
     </a>
     <div class="content">
-    <p><a class="child" href="javascript:void(0)">密码管理</a></p>
+    <p><a id="PasswordManager" class="child" href="javascript:void(0)">密码管理</a></p>
     <p><a class="child" href="javascript:void(0)">教师管理</a></p>
     <p><a class="child" href="javascript:void(0)">学生管理</a></p>
     </div>
     </div>
+      <div class="item acc">
+        <a class="title" style="color:#AEB7C2;">
+          <i class="icon users padrig"></i>
+          课程管理
+          <i class="dropdown icon"></i>
+        </a>
+        <div class="content">
+          <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+        </div>
+      </div>
     </div>
     <div class="pusher">
     <div class="ui basic segment">
@@ -176,6 +186,14 @@
             return $('.container').outerHeight()-Number($('.ui.massive.attached.stackable.menu.borderless').outerHeight()+2);
         });
     }
+    $('#CourseQuery').click(function () {
+        $('iframe').attr("src","/SIS/course/view")
+    })
+    ;
+    $('#PasswordManager').click(function () {
+        $('iframe').attr("src","/SIS/user/view")
+    })
+    ;
     checkHeight();
     </script>
 </html>
