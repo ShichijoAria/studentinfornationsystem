@@ -33,10 +33,8 @@ public class BaseServlet extends HttpServlet{
         method.setAccessible(true);
         try {
             Void result = (Void) method.invoke(this, req, resp);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -52,10 +50,10 @@ public class BaseServlet extends HttpServlet{
         if(currentPage!=null&&isNumeric(currentPage))
             curPage=Integer.parseInt(currentPage)<=0?1:Integer.parseInt(currentPage);
         int pages;
-        if(size%20==0)
-            pages=size/20;
+        if(size%10==0)
+            pages=size/10;
         else
-            pages=size/20+1;
+            pages=size/10+1;
         if(curPage>pages)
             curPage=pages;
         this.page(pages,curPage,page,size);
@@ -67,9 +65,23 @@ public class BaseServlet extends HttpServlet{
             page.setEnd(0);
             page.setPages(1);
         }else {
-            page.setBegin((curPage - 1) * 20);
-            page.setEnd(((curPage - 1) * 20 + 19) < (size - 1) ? ((curPage - 1) * 20 + 19) : (size - 1));
+            page.setBegin((curPage - 1) * 10);
+            page.setEnd(((curPage - 1) * 10 + 9) < (size - 1) ? ((curPage - 1) * 10 + 9) : (size - 1));
             page.setPages(pages);
         }
+    }
+
+    public String getId(HttpServletRequest req, HttpServletResponse resp){
+        String id=req.getParameter("id");
+        String sessionId=(String)req.getSession().getAttribute("resourceId");
+        if(id!=null) {
+            req.getSession().setAttribute("resourceId",id);
+            return id;
+        }
+        else if(sessionId!=null) {
+            return sessionId;
+        }
+        else
+            return null;
     }
 }

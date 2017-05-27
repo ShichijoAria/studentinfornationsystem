@@ -28,7 +28,7 @@
     <!-- 容器 -->
     <div class="container" style="height: 100%">
     <div class="ui small massive attached stackable menu borderless grid one column">
-      <div class="ui small menu borderless large screen tablet column computer only" style="padding: 0 0 0 0">
+      <div class="ui small menu borderless large screen tablet computer only column" style="padding: 0 0 0 0">
         <div class="ui tiny header item indexmenu" style="width:220px;padding-right: 0px">
           <i class="circular users icon indexmenu"></i>
           <div class="content">
@@ -48,7 +48,7 @@
         </div>
         </div>
         <div class="menu right">
-        <div class="ui dropdown item indexmenu">
+        <div class="ui dropdown fluid item indexmenu">
         <i class="user icon"></i>${sessionScope.userName}
         <div class="menu">
         <a class="item"><i class="icon setting"></i> 个人信息</a>
@@ -65,15 +65,15 @@
         <div class="item indexmenu" style="width:33%!important">
           <a id="arrow2" href="javascript:void(0);"><i class="circular outline icon arrow left"></i></a>
         </div>
-        <div class="item indexmenu" style="width: 33%!important;">
-          <i class="circular users icon"></i>
-        </div>
         <div class="ui icon floating item indexmenu dropdown" style="width: 33%!important">
           <i class="circular user icon"></i>
           <div class="menu">
             <a class="item"><i class="icon setting"></i> 个人信息</a>
             <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
           </div>
+        </div>
+        <div class="item indexmenu" style="width: 33%!important;">
+          <i class="circular users icon"></i>
         </div>
       </div>
     </div>
@@ -103,7 +103,7 @@
       </div>
     </div>
     <div class="pusher">
-    <div class="ui basic segment">
+    <div class="ui segment">
       <iframe class="" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>
     </div>
     </div>

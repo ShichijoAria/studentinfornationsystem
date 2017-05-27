@@ -20,6 +20,10 @@ public class CourseService implements Service{
         this.search = search;
     }
 
+    public CourseEntity getById(String id){
+        return courseDao.getByID(id);
+    }
+
     @Override
     public List<CourseEntity> getList(){
         return courseDao.getList(search);

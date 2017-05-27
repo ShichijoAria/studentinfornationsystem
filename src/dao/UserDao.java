@@ -78,6 +78,6 @@ public class UserDao extends BaseDao{
         }finally{
             this.close();
         }
-        return list.size()>0?list:null;
+        return list;
     }
 }

@@ -34,8 +34,22 @@ public class CourseDao extends BaseDao{
         }finally{
             this.close();
         }
-        return list.size()>0?list:null;
+        return list;
     }
 
-
+    public CourseEntity getByID(String id){
+        CourseEntity courseEntity=new CourseEntity();
+        String sql="select *from t_course where id=?";
+        ResultSet rs=this.executeQuery(sql,id);
+        try {
+            if(rs.next()){
+                courseEntity= new CourseEntity(rs.getString(1),rs.getString(2));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.close();
+        }
+        return courseEntity;
+    }
 }
