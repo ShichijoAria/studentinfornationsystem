@@ -80,4 +80,33 @@ public class UserDao extends BaseDao{
         }
         return list;
     }
+
+    public UserEntity getById(String id){
+        String sql="SELECT id,'3' AS type,name,password FROM t_student where id=?" +
+                "UNION SELECT id,'2' AS type,name,password FROM t_teacher where id=?" +
+                "UNION SELECT id,'1' AS type,name,password FROM t_administrator where id=?";
+        ResultSet rs = this.executeQuery(sql, id,id,id);
+        try {
+            if(rs.next()){
+                return new UserEntity(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally{
+            this.close();
+        }
+        return null;
+    }
+
+    public int update(UserEntity u,String id){
+        String sql="";
+        if(u.getType().equals("1")) {
+            sql = "update t_administrator set password=? where id=?";
+        }else if(u.getType().equals("2")) {
+            sql = "update t_teacher set password=? where id=?";
+        }else{
+            sql = "update t_student set password=? where id=?";
+        }
+        return this.executeUpdate(sql, u.getPassword(),id);
+    }
 }

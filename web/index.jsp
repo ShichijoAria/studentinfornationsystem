@@ -52,7 +52,7 @@
         <i class="user icon"></i>${sessionScope.userName}
         <div class="menu">
         <a class="item"><i class="icon setting"></i> 个人信息</a>
-        <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
+        <a class="item" href="/SIS/desktop/loginOut"><i class="icon sign out"></i> 注销</a>
         </div>
         </div>
         <div class="ui item">
@@ -79,29 +79,29 @@
     </div>
       <div class="ui bottom attached segment pushable" style="background-color: #F3F5F8!important;">
       <div class="ui inverted labeled icon left inline vertical sidebar menu accordion" style="width: 260px">
-      <div class="item acc">
-    <a class="title" style="color:#AEB7C2;">
-    <i class="icon users padrig"></i>
-    用户管理
-    <i class="dropdown icon"></i>
-    </a>
-    <div class="content">
-    <p><a id="PasswordManager" class="child" href="javascript:void(0)">密码管理</a></p>
-    <p><a class="child" href="javascript:void(0)">教师管理</a></p>
-    <p><a class="child" href="javascript:void(0)">学生管理</a></p>
-    </div>
-    </div>
-      <div class="item acc">
-        <a class="title" style="color:#AEB7C2;">
-          <i class="icon users padrig"></i>
-          课程管理
-          <i class="dropdown icon"></i>
-        </a>
-        <div class="content">
-          <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+        <div class="item acc">
+          <a class="title" style="color:#AEB7C2;">
+            <i class="icon users padrig"></i>
+              用户管理
+            <i class="dropdown icon"></i>
+          </a>
+          <div class="content">
+          <p><a id="PasswordManager" class="child" href="javascript:void(0)">密码管理</a></p>
+          <p><a class="child" href="javascript:void(0)">教师管理</a></p>
+          <p><a class="child" href="javascript:void(0)">学生管理</a></p>
+          </div>
+        </div>
+        <div class="item acc">
+          <a class="title" style="color:#AEB7C2;">
+            <i class="icon users padrig"></i>
+            课程管理
+            <i class="dropdown icon"></i>
+          </a>
+          <div class="content">
+            <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+          </div>
         </div>
       </div>
-    </div>
     <div class="pusher">
     <div class="ui segment">
       <iframe class="" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>

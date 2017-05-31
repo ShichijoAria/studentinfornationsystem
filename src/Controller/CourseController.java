@@ -20,16 +20,13 @@ public class CourseController extends BaseServlet{
 
     private void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         CourseService courseService=new CourseService();
+        CourseEntity courseEntity=this.getCourse(req,resp);
         int result=0;
-        String id=req.getParameter("id");
-        String name=req.getParameter("name");
-        name=new String(name.getBytes("iso-8859-1"),"utf-8");
-        if(id!=null&&id.trim().length()>0)
-            result=courseService.insert(new CourseEntity(id,name));
+        if(courseEntity.getId()!=null&&courseEntity.getId().trim().length()>0)
+            result=courseService.insert(courseEntity);
         if(result>0) {
-            req.setAttribute("id",id);
-            req.setAttribute("name",name);
-            req.getRequestDispatcher("/course/field?id="+id).forward(req, resp);
+            this.setCourse(req,resp,courseEntity);
+            req.getRequestDispatcher("/course/field?id="+courseEntity.getId()).forward(req, resp);
         }
     }
 
@@ -53,26 +50,19 @@ public class CourseController extends BaseServlet{
         String id=this.getId(req,resp);
         if(id!=null) {
             CourseEntity courseEntity = courseService.getById(id);
-            req.setAttribute("id",courseEntity.getId());
-            req.setAttribute("name",courseEntity.getName());
+            this.setCourse(req,resp,courseEntity);
             if(req.getParameter("curPage")!=null)
                 req.getSession().setAttribute("courseBack",req.getParameter("curPage"));
             req.getRequestDispatcher("/field/course.jsp").forward(req, resp);
-            req.setAttribute("back",courseEntity.getName());
         }
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         CourseService courseService=new CourseService();
-        String id=req.getParameter("id");
-        String name=req.getParameter("name");
-        name=new String(name.getBytes("iso-8859-1"),"utf-8");
-        id=new String(id.getBytes("iso-8859-1"),"utf-8");
-        int result=courseService.update(new CourseEntity(id,name),id);
+        String id=this.getId(req,resp);
+        int result=courseService.update(this.getCourse(req,resp),id);
         if(result>0) {
-            CourseEntity courseEntity = courseService.getById(id);
             req.setAttribute("id",id);
-            req.setAttribute("name",name);
             req.getRequestDispatcher("/course/field?id="+id).forward(req, resp);
         }
         else {
@@ -83,6 +73,17 @@ public class CourseController extends BaseServlet{
     private void open(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         req.getSession().setAttribute("courseBack",req.getParameter("curPage"));
         req.getRequestDispatcher("/field/course.jsp").forward(req, resp);
+    }
+
+    public CourseEntity getCourse(HttpServletRequest req, HttpServletResponse resp){
+        String id=req.getParameter("id");
+        String name=req.getParameter("name");
+        return new CourseEntity(id,name);
+    }
+
+    public void setCourse(HttpServletRequest req, HttpServletResponse resp,CourseEntity courseEntity){
+        req.setAttribute("id",courseEntity.getId());
+        req.setAttribute("name",courseEntity.getName());
     }
 
 }

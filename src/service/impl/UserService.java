@@ -21,6 +21,10 @@ public class UserService implements Service{
 
     }
 
+    public UserEntity getById(String id){
+        return userDao.getById(id);
+    }
+
     public UserEntity login(UserEntity u){
         return userDao.login(u);
     }
@@ -28,6 +32,10 @@ public class UserService implements Service{
     @Override
     public List<UserEntity> getList(){
         return userDao.getList(search);
+    }
+
+    public int update(UserEntity u,String id){
+        return userDao.update(u,id);
     }
 
 }

@@ -15,7 +15,7 @@
         上页
     </a>
     <a class="item foot">
-        <select name="curPage" class="ui fluid dropdown">
+        <select name="curPage" id="page" class="ui fluid dropdown">
             <%
                 int i=1;
             %>
@@ -71,7 +71,7 @@
             setAction("form","/SIS/<%=viewName%>/view?curPage="+(Number(getUrlVars()["curPage"])+1));
 
     })
-    $("select").change(function() {
+    $("select#page").change(function() {
         setAction("form","/SIS/<%=viewName%>/view?curPage="+$('select').val());
     });
     $('tr').click(function () {

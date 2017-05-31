@@ -83,7 +83,7 @@
                 </thead>
                 <tbody>
                 <c:forEach items="${list}" var="bean" begin="${page.begin}" end="${page.end}">
-                    <tr class="center aligned">
+                    <tr id="${bean.id}" class="center aligned">
                         <td>
                             <div class="ui checkbox">
                                 <input type="checkbox" name="item" value="${bean.id}"><label></label>

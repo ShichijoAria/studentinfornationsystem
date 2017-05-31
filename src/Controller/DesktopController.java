@@ -35,6 +35,14 @@ public class DesktopController extends BaseServlet{
         }
     }
 
+    private void loginOut(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.getSession().removeAttribute("userId");
+        req.getSession().removeAttribute("userPassword");
+        req.getSession().removeAttribute("userName");
+        req.getSession().removeAttribute("userType");
+        resp.sendRedirect("/SIS/desktop/signIn");
+    }
+
     @Override
     public void init() throws ServletException {
 
