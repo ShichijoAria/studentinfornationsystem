@@ -20,6 +20,14 @@ public class CourseService implements Service{
         this.search = search;
     }
 
+    public int insert(CourseEntity courseEntity){
+        return courseDao.insert(courseEntity);
+    }
+
+    public int update(CourseEntity courseEntity,String id){
+        return courseDao.update(courseEntity,id);
+    }
+
     public CourseEntity getById(String id){
         return courseDao.getByID(id);
     }

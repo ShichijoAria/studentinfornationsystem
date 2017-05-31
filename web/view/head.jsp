@@ -21,7 +21,6 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <title>学生信息系统</title>
     <script src="../modules/jquery.js"></script>
     <link rel="stylesheet" href="../modules/semantic.css">

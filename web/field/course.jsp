@@ -8,10 +8,10 @@
     <meta http-equiv="expires" content="0">
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>学生信息系统</title>
     <script src="../modules/jquery.js"></script>
-    <link rel="stylesheet" href="../modules/semantic.min.css">
+    <link rel="stylesheet" href="../modules/semantic.css">
     <script src="../modules/semantic.min.js"></script>
     <link rel="stylesheet" href="../css/general.css">
     <link rel="stylesheet" href="../css/index.css">
@@ -19,7 +19,7 @@
     <script src="../js/util.js"></script>
 </head>
 <body>
-<form class="ui form" id="field" method="post" action="update.action" id="main">
+<form class="ui form" id="field" method="post" action="/SIS/course/update?id=${id}" id="main">
     <div class="ui small menu" id="menu">
         <div class="left menu">
             <div class="item">
@@ -29,13 +29,13 @@
         </div>
     </div>
     <div class="ui segment grid">
-        <div class="ui two wide column input fieldinput">课程编号</div>
+        <div class="ui two wide column input">课程编号</div>
         <div class="ui three wide column input">
-            <input type="text" name="id" value="${param.id}">
+            <input type="text" name="id" value="${id}">
         </div>
-        <div class="ui two wide column input fieldinput">课程名称</div>
+        <div class="ui two wide column input">课程名称</div>
         <div class="ui three wide column input">
-            <input type="text" name="name" value="${param.name}">
+            <input type="text" name="name" value="${name}">
         </div>
     </div>
     <div class="ui error message"></div>
@@ -43,8 +43,8 @@
 <script>
     var strs= new Array(); //定义一数组
     strs=window.location.pathname.split("/");
-    if(strs.length>0&&strs[strs.length-1]=="newopen.action"){
-        $('form').attr('action','new.action');
+    if(strs.length>0&&strs[strs.length-1]=="open"){
+        $('form').attr('action','/SIS/course/insert');
     }
     $('#return').click(function () {
         $('#field')
@@ -52,7 +52,7 @@
                 fields: {}
             })
         ;
-        setAction('#field','view.action');
+        setAction('#field','/SIS/course/view?curPage=${sessionScope.courseBack}');
     })
     ;
     $('#save').click(function () {

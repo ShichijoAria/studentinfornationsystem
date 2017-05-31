@@ -52,4 +52,14 @@ public class CourseDao extends BaseDao{
         }
         return courseEntity;
     }
+
+    public int update(CourseEntity courseEntity,String id){
+        String sql="update t_course set id=? ,name=? where id=?";
+        return this.executeUpdate(sql,courseEntity.getId(),courseEntity.getName(),id);
+    }
+
+    public int insert(CourseEntity courseEntity){
+        String sql="insert into t_course(id,name) values(?,?)";
+        return this.executeUpdate(sql,courseEntity.getId(),courseEntity.getName());
+    }
 }

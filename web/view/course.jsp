@@ -8,6 +8,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" import="java.util.*" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    String viewName="course";
+%>
 <%@ include file="head.jsp"  %>
                         课程编号
                     </div>
@@ -39,6 +42,12 @@
         </h2>
         <div  id="menu">
             <div class="ui small menu">
+                <div class="left menu">
+                    <div class="item">
+                        <div class="ui primary button" id="new" style="margin-right: 5px">新建</div>
+                        <div class="ui red button" id="delete">删除</div>
+                    </div>
+                </div>
                 <div class="right menu">
                     <div class="item">
                         <div id="search" class="ui teal icon button">

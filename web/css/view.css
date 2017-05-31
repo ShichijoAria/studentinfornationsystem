@@ -36,3 +36,6 @@ a.item.foot{
 table{
     margin-bottom: 20px!important;
 }
+tr:hover{
+    cursor:pointer!important;
+}

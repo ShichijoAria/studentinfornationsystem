@@ -15,7 +15,7 @@
         上页
     </a>
     <a class="item foot">
-        <select class="ui fluid dropdown">
+        <select name="curPage" class="ui fluid dropdown">
             <%
                 int i=1;
             %>
@@ -54,28 +54,31 @@
             .sidebar('toggle')
     })
     $('.ui.button.blue').click(function () {
-        setAction('form',"/SIS/course/view");
+        setAction('form',"/SIS/<%=viewName%>/view");
     })
     $("#previous").click(function(){
         if(typeof(getUrlVars()["curPage"])=="undefined"||Number(getUrlVars()["curPage"])<=1)
-            setAction("form","/SIS/course/view?curPage=1");
+            setAction("form","/SIS/<%=viewName%>/view?curPage=1");
         else
-            setAction("form","/SIS/course/view?curPage="+(Number(getUrlVars()["curPage"])-1));
+            setAction("form","/SIS/<%=viewName%>/view?curPage="+(Number(getUrlVars()["curPage"])-1));
     })
     $("#next").click(function(){
         if(typeof(getUrlVars()["curPage"])=="undefined")
-            setAction("form","/SIS/course/view?curPage=2");
+            setAction("form","/SIS/<%=viewName%>/view?curPage=2");
         else if(Number(getUrlVars()["curPage"])==${page.pages})
-            setAction("form","/SIS/course/view?curPage=${page.pages}");
+            setAction("form","/SIS/<%=viewName%>/view?curPage=${page.pages}");
         else
-            setAction("form","/SIS/course/view?curPage="+(Number(getUrlVars()["curPage"])+1));
+            setAction("form","/SIS/<%=viewName%>/view?curPage="+(Number(getUrlVars()["curPage"])+1));
 
     })
     $("select").change(function() {
-        setAction("form","/SIS/course/view?curPage="+$('select').val());
+        setAction("form","/SIS/<%=viewName%>/view?curPage="+$('select').val());
     });
     $('tr').click(function () {
-        alert($(this).attr("id"))
+        setAction("form","/SIS/<%=viewName%>/field?id="+$(this).attr("id"));
+    })
+    $('#new').click(function () {
+        setAction('form',"/SIS/<%=viewName%>/open")
     })
 </script>
 </body>
