@@ -74,11 +74,14 @@
     $("select#page").change(function() {
         setAction("form","/SIS/<%=viewName%>/view?curPage="+$('select').val());
     });
-    $('tr').click(function () {
+    $('tr.td').click(function () {
         setAction("form","/SIS/<%=viewName%>/field?id="+$(this).attr("id"));
     })
     $('#new').click(function () {
         setAction('form',"/SIS/<%=viewName%>/open")
+    })
+    $('#delete').click(function () {
+        setAction('form',"/SIS/<%=viewName%>/delete")
     })
 </script>
 </body>

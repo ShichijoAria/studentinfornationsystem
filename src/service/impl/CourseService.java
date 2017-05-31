@@ -32,6 +32,10 @@ public class CourseService implements Service{
         return courseDao.getByID(id);
     }
 
+    public void delete(String[] id){
+        courseDao.deleteByID(id,"t_course");
+    }
+
     @Override
     public List<CourseEntity> getList(){
         return courseDao.getList(search);

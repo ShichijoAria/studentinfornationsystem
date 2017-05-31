@@ -2,6 +2,7 @@ package Controller;
 
 import entity.CourseEntity;
 import service.impl.CourseService;
+import sun.dc.pr.PRError;
 import util.BaseServlet;
 import util.Page;
 
@@ -32,16 +33,17 @@ public class CourseController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        CourseService courseService=new CourseService(new CourseEntity((String)req.getParameter("searchId"),
-                (String)req.getParameter("searchName")));
+        String id=req.getParameter("searchId");
+        String name=req.getParameter("searchName");
+        CourseService courseService=new CourseService(new CourseEntity(id,name));
         List<CourseEntity> list=new ArrayList<CourseEntity>();
         list.addAll(courseService.getList());
         Page page=new Page();
         initialize(page,list.size(),courseService,curPage);
         req.setAttribute("page",page);
         req.setAttribute("list",list);
-        req.setAttribute("searchId",(String)req.getAttribute("searchId"));
-        req.setAttribute("searchName",(String)req.getAttribute("searchName"));
+        req.setAttribute("searchId",id);
+        req.setAttribute("searchName",name);
         req.getRequestDispatcher("/view/course.jsp").forward(req, resp);
     }
 
@@ -73,6 +75,17 @@ public class CourseController extends BaseServlet{
     private void open(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         req.getSession().setAttribute("courseBack",req.getParameter("curPage"));
         req.getRequestDispatcher("/field/course.jsp").forward(req, resp);
+    }
+
+    private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        CourseService courseService=new CourseService();
+        String[] items={};
+        if(req.getParameterValues("item")!=null) {
+            items = req.getParameterValues("item");
+            courseService.delete(items);
+        }
+        if(req.getParameter("curPage")!=null)
+            resp.sendRedirect("/SIS/course/view?curPage="+req.getParameter("curPage"));
     }
 
     public CourseEntity getCourse(HttpServletRequest req, HttpServletResponse resp){

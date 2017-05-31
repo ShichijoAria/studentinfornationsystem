@@ -89,9 +89,9 @@
                                 <input type="checkbox" name="item" value="${bean.id}"><label></label>
                             </div>
                         </td>
-                        <td>${bean.id}</td>
-                        <td>${bean.name}</td>
-                        <td>${bean.type}</td>
+                        <td class="td">${bean.id}</td>
+                        <td class="td">${bean.name}</td>
+                        <td class="td">${bean.type}</td>
                     </tr>
                 </c:forEach>
 <%@ include file="foot.jsp"  %>
