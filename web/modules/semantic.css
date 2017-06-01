@@ -9613,7 +9613,7 @@ img.ui.image {
 }
 
 .ui.disabled.input,.ui.input input[disabled] {
-    opacity: .45
+    opacity: .80
 }
 
 .ui.disabled.input input,.ui.input input[disabled] {
