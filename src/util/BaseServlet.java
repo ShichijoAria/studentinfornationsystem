@@ -71,17 +71,4 @@ public class BaseServlet extends HttpServlet{
         }
     }
 
-    public String getId(HttpServletRequest req, HttpServletResponse resp){
-        String id=req.getParameter("id");
-        String sessionId=(String)req.getSession().getAttribute("resourceId");
-        if(id!=null) {
-            req.getSession().setAttribute("resourceId",id);
-            return id;
-        }
-        else if(sessionId!=null) {
-            return sessionId;
-        }
-        else
-            return null;
-    }
 }

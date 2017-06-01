@@ -20,7 +20,7 @@
     <script src="../js/util.js"></script>
 </head>
 <body>
-<form class="ui form" id="field" method="post" action="/SIS/user/update?id=${id}" id="main">
+<form class="ui form" id="field" method="post" action="/SIS/user/update?resourceId=${id}" id="main">
     <div class="ui small menu" id="menu">
         <div class="left menu">
             <div class="item">
@@ -138,6 +138,7 @@
         $('#field').submit()
     })
     ;
+    $('.ui.input').outerWidth($('input').outerWidth())
 </script>
 </body>
 </html>

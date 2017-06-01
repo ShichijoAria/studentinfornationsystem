@@ -35,7 +35,7 @@ public class UserController extends BaseServlet{
 
     private void field(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService=new UserService();
-        String id=this.getId(req,resp);
+        String id=req.getParameter("resourceId");
         if(id!=null) {
             UserEntity userEntity = userService.getById(id);
             this.setUser(req,resp,userEntity);
@@ -47,11 +47,10 @@ public class UserController extends BaseServlet{
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserService userService=new UserService();
-        String id=getId(req,resp);
+        String id=req.getParameter("resourceId");
         int result=userService.update(this.getUser(req,resp),id);
         if(result>0) {
-            req.setAttribute("id",id);
-            req.getRequestDispatcher("/user/field?id="+id).forward(req, resp);
+            resp.sendRedirect("/SIS/user/field?resourceId="+req.getParameter("id"));
         }
         else {
             resp.sendError(404);

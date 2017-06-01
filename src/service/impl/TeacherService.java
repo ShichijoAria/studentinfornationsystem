@@ -16,8 +16,24 @@ public class TeacherService implements Service{
     public TeacherService() {
     }
 
+    public TeacherEntity getById(String id){
+        return teacherDao.getByID(id);
+    }
+
+    public int update(TeacherEntity teacherEntity,String id){
+        return teacherDao.update(teacherEntity,id);
+    }
+
+    public int insert(TeacherEntity courseEntity){
+        return teacherDao.insert(courseEntity);
+    }
+
     public TeacherService(TeacherEntity search) {
         this.search = search;
+    }
+
+    public void delete(String[] id){
+        teacherDao.deleteByID(id,"t_teacher");
     }
 
     public List<TeacherEntity> getList(){

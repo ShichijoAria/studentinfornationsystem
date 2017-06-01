@@ -47,25 +47,25 @@ public class CourseController extends BaseServlet{
         req.getRequestDispatcher("/view/course.jsp").forward(req, resp);
     }
 
-    private void field(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void field(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         CourseService courseService=new CourseService();
-        String id=this.getId(req,resp);
+        String id=req.getParameter("resourceId");
         if(id!=null) {
             CourseEntity courseEntity = courseService.getById(id);
             this.setCourse(req,resp,courseEntity);
             if(req.getParameter("curPage")!=null)
                 req.getSession().setAttribute("courseBack",req.getParameter("curPage"));
             req.getRequestDispatcher("/field/course.jsp").forward(req, resp);
-        }
+        }else
+            resp.sendError(404);
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         CourseService courseService=new CourseService();
-        String id=this.getId(req,resp);
+        String id=req.getParameter("resourceId");
         int result=courseService.update(this.getCourse(req,resp),id);
         if(result>0) {
-            req.setAttribute("id",id);
-            req.getRequestDispatcher("/course/field?id="+id).forward(req, resp);
+            resp.sendRedirect("/SIS/course/field?resourceId="+req.getParameter("id"));
         }
         else {
             resp.sendError(404);

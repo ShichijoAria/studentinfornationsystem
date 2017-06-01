@@ -45,4 +45,29 @@ public class TeacherDao extends BaseDao{
         return list;
     }
 
+    public TeacherEntity getByID(String id){
+        TeacherEntity teacherEntity=new TeacherEntity();
+        String sql="select *from t_teacher where id=?";
+        ResultSet rs=this.executeQuery(sql,id);
+        try {
+            if(rs.next()){
+                teacherEntity= new TeacherEntity(rs.getString(1),rs.getString(2),rs.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            this.close();
+        }
+        return teacherEntity;
+    }
+
+    public int update(TeacherEntity teacherEntity,String id){
+        String sql="update t_teacher set id=? ,name=?,gender=? where id=?";
+        return this.executeUpdate(sql,teacherEntity.getId(),teacherEntity.getName(),teacherEntity.getGender(),id);
+    }
+
+    public int insert(TeacherEntity teacherEntity){
+        String sql="insert into t_teacher(id,name,gender) values(?,?,?)";
+        return this.executeUpdate(sql,teacherEntity.getId(),teacherEntity.getName(),teacherEntity.getGender());
+    }
 }

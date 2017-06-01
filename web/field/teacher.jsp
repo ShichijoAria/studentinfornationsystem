@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
     <script src="../js/util.js"></script>
 </head>
 <body>
-<form class="ui form" id="field" method="post" action="/SIS/course/update?resourceId=${id}" id="main">
+<form class="ui form" id="field" method="post" action="/SIS/teacher/update?resourceId=${id}" id="main">
     <div class="ui small menu" id="menu">
         <div class="left menu">
             <div class="item">
@@ -30,15 +31,32 @@
     </div>
     <div class="ui segment stackable three column grid">
         <div class="column">
-            <div class="ui black basic horizontal label">课程编号</div>
-            <div class="ui three wide column input">
+            <div class="ui black basic horizontal label">教师编号</div>
+            <div class="ui input">
                 <input type="text" name="id" value="${id}">
             </div>
         </div>
         <div class="column">
-            <div class="ui black basic horizontal label">课程名称</div>
+            <div class="ui black basic horizontal label">教师名称</div>
             <div class="ui input">
                 <input type="text" name="name" value="${name}">
+            </div>
+        </div>
+        <div class="column">
+            <div class="ui black basic horizontal label">教师性别</div>
+            <div class="ui input">
+                <select class="ui dropdown" name="gender">
+                    <option value="0"
+                            <c:if test="${gender==\"0\"}">
+                                selected=/"selected/"
+                            </c:if>
+                    >男</option>
+                    <option value="1"
+                            <c:if test="${gender==\"1\"}">
+                                selected=/"selected/"
+                            </c:if>
+                    >女</option>
+                </select>
             </div>
         </div>
     </div>
@@ -48,7 +66,7 @@
     var strs= new Array(); //定义一数组
     strs=window.location.pathname.split("/");
     if(strs.length>0&&strs[strs.length-1]=="open"){
-        $('form').attr('action','/SIS/course/insert');
+        $('form').attr('action','/SIS/teacher/insert');
     }
     $('#return').click(function () {
         $('#field')
@@ -56,7 +74,7 @@
                 fields: {}
             })
         ;
-        setAction('#field','/SIS/course/view?curPage=${sessionScope.courseBack}');
+        setAction('#field','/SIS/teacher/view?curPage=${sessionScope.teacherBack}');
     })
     ;
     $('#save').click(function () {
@@ -68,7 +86,7 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: '课程编号不能为空！！！'
+                                prompt: '教师编号不能为空！！！'
                             }
                         ]
                     },
@@ -77,7 +95,16 @@
                         rules: [
                             {
                                 type: 'empty',
-                                prompt: '课程名称不能为空！！！'
+                                prompt: '教师名称不能为空！！！'
+                            }
+                        ]
+                    },
+                    gender: {
+                        identifier: 'gender',
+                        rules: [
+                            {
+                                type: 'empty',
+                                prompt: '教师性别不能为空！！！'
                             }
                         ]
                     }
@@ -87,6 +114,10 @@
         $('#field').submit()
     })
     ;
+    $('.ui.input').outerWidth($('input').outerWidth());
+    $('.ui.dropdown')
+        .dropdown()
+    ;/*下拉菜单初始化*/
 </script>
 </body>
 </html>

@@ -4,6 +4,7 @@
       <root url="jar://$PROJECT_DIR$/lib/jstl.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/standard.jar!/" />
     </CLASSES>
+    <JAVADOC />
     <SOURCES />
   </library>
 </component>
