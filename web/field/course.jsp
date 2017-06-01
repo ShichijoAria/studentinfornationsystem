@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="ui segment grid">
+    <div class="ui segment stackable grid">
         <div class="ui two wide column input">课程编号</div>
         <div class="ui three wide column input">
             <input type="text" name="id" value="${id}">

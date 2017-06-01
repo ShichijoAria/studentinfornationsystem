@@ -16,10 +16,12 @@ public class TeacherDao extends BaseDao{
     public List<TeacherEntity> getList(TeacherEntity search){
         String sql="select *from t_teacher";
         if(search!=null) {
-            if(search.getGender().equals("0")){
-                sql+=" where gender='"+search.getGender()+"' and";
-            }else if(search.getGender().equals("1")){
-                sql+=" where gender='"+search.getGender()+"' and";
+            if(search.getGender()!=null) {
+                if (search.getGender().equals("0")) {
+                    sql += " where gender='" + search.getGender() + "' and";
+                } else if (search.getGender().equals("1")) {
+                    sql += " where gender='" + search.getGender() + "' and";
+                }
             }else {
                 sql+=" where ";
             }

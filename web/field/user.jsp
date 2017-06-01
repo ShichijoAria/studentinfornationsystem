@@ -29,18 +29,22 @@
             </div>
         </div>
     </div>
-    <div class="ui segment grid">
-        <div class="row">
-            <div class="ui two wide column">用户编号</div>
-            <div class="ui three wide column input disabled">
+    <div class="ui segment stackable three column grid">
+        <div class="column">
+            <div class="ui black basic horizontal label">用户编号</div>
+            <div class="ui input disabled">
                 <input type="text" name="id" value="${id}">
             </div>
-            <div class="ui two wide column">用户名称</div>
-            <div class="ui three wide column input disabled">
+        </div>
+        <div class="column">
+            <div class="ui black basic horizontal label">用户名称</div>
+            <div class="ui input disabled">
                 <input type="text" name="name" value="${name}">
             </div>
-            <div class="ui two wide column">用户权限</div>
-            <div class="ui three wide column input disabled">
+        </div>
+        <div class="column">
+            <div class="ui black basic horizontal label">用户权限</div>
+            <div class="ui input disabled">
                 <select class="ui disabled dropdown" name="type">
                     <option value="3"
                             <c:if test="${type==\"3\"}">
@@ -60,9 +64,11 @@
                 </select>
             </div>
         </div>
-        <div class="ui two wide column input fieldinput">用户密码</div>
-        <div class="ui three wide column input">
-            <input type="text" name="password" value="${password}">
+        <div class="column">
+            <div class="ui black basic horizontal label">用户密码</div>
+            <div class="ui input">
+                <input type="text" name="password" value="${password}">
+            </div>
         </div>
     </div>
     <div class="ui error message"></div>

@@ -74,8 +74,8 @@
     $("select#page").change(function() {
         setAction("form","/SIS/<%=viewName%>/view?curPage="+$('select').val());
     });
-    $('tr.td').click(function () {
-        setAction("form","/SIS/<%=viewName%>/field?id="+$(this).attr("id"));
+    $('td.td').click(function () {
+        setAction("form","/SIS/<%=viewName%>/field?id="+$(this).parent().attr("id"));
     })
     $('#new').click(function () {
         setAction('form',"/SIS/<%=viewName%>/open")

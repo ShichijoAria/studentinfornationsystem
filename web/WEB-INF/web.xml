@@ -30,6 +30,15 @@
         <url-pattern>/course/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>teacher</servlet-name>
+        <servlet-class>Controller.TeacherController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teacher</servlet-name>
+        <url-pattern>/teacher/*</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>loginFilter</filter-name><!--登录拦截器-->
         <filter-class>interceptor.LoginFilter</filter-class>

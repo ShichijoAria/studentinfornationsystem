@@ -15,7 +15,7 @@
                         用户编号
                     </div>
                     <div class="ui input">
-                        <input class="input" type="text" name="search.id" value="${search.id}">
+                        <input class="input" type="text" name="searchId" value="${param.searchId}">
                         <i class="icon"></i>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         用户名称
                     </div>
                     <div class="ui input">
-                        <input class="input" type="text" name="search.name" value="${search.name}">
+                        <input class="input" type="text" name="searchName" value="${param.searchName}">
                     </div>
                 </div>
                 <div class="column">
@@ -32,11 +32,20 @@
                         用户角色
                     </div>
                     <div class="ui input">
-                        <select class="ui fluid dropdown" name="search.type">
+                        <select class="ui fluid dropdown" name="searchType">
                             <option value="">权限</option>
                             <option value="3"
+                                    <c:if test="${param.searchType eq '3'}">
+                                        selected=/"selected/"
+                                    </c:if>
                             >学生</option>
+                                    <c:if test="${param.searchType eq '2'}">
+                                        selected=/"selected/"
+                                    </c:if>
                             <option value="2"
+                                    <c:if test="${param.searchType eq '1'}">
+                                        selected=/"selected/"
+                                    </c:if>
                             >教师</option>
                             <option value="1"
                             >管理员</option>

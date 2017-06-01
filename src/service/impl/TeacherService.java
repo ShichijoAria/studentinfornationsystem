@@ -2,13 +2,14 @@ package service.impl;
 
 import dao.TeacherDao;
 import entity.TeacherEntity;
+import service.Service;
 
 import java.util.List;
 
 /**
  * Created by Ace on 2017/5/31.
  */
-public class TeacherService {
+public class TeacherService implements Service{
     private TeacherDao teacherDao=new TeacherDao();
     private TeacherEntity search;
 

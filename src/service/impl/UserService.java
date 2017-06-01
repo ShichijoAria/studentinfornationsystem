@@ -18,7 +18,6 @@ public class UserService implements Service{
 
     public UserService(UserEntity search) {
         this.search = search;
-
     }
 
     public UserEntity getById(String id){

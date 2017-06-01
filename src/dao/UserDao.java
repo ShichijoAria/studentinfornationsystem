@@ -56,6 +56,7 @@ public class UserDao extends BaseDao{
             sql1 += "and" + t;
             sql2 += "where " + t;
             sql3 += "where " + t;
+            sql= sql1 + "UNION " + sql2 + "UNION " + sql3;
             if(search.getType()!=null) {
                 if (search.getType().equals("3")) {
                     sql = sql1;

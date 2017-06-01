@@ -18,12 +18,18 @@ public class UserController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        UserService userService=new UserService(new UserEntity());
+        String id=req.getParameter("searchId");
+        String name=req.getParameter("searchName");
+        String type=req.getParameter("searchType");
+        UserService userService=new UserService(new UserEntity(id,type,name,null));
         List<UserEntity> list=userService.getList();
         Page page=new Page();
         initialize(page,list.size(),userService,curPage);
         req.setAttribute("page",page);
         req.setAttribute("list",list);
+        req.setAttribute("searchId",id);
+        req.setAttribute("searchName",name);
+        req.setAttribute("searchType",type);
         req.getRequestDispatcher("/view/user.jsp").forward(req, resp);
     }
 

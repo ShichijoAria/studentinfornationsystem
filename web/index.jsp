@@ -87,7 +87,7 @@
           </a>
           <div class="content">
           <p><a id="PasswordManager" class="child" href="javascript:void(0)">密码管理</a></p>
-          <p><a class="child" href="javascript:void(0)">教师管理</a></p>
+          <p><a id="TeacherManagement" class="child" href="javascript:void(0)">教师管理</a></p>
           <p><a class="child" href="javascript:void(0)">学生管理</a></p>
           </div>
         </div>
@@ -192,6 +192,10 @@
     ;
     $('#PasswordManager').click(function () {
         $('iframe').attr("src","/SIS/user/view")
+    })
+    ;
+    $('#TeacherManagement').click(function () {
+        $('iframe').attr("src","/SIS/teacher/view")
     })
     ;
     checkHeight();
