@@ -26,8 +26,7 @@ public class CourseController extends BaseServlet{
         if(courseEntity.getId()!=null&&courseEntity.getId().trim().length()>0)
             result=courseService.insert(courseEntity);
         if(result>0) {
-            this.setCourse(req,resp,courseEntity);
-            req.getRequestDispatcher("/course/field?id="+courseEntity.getId()).forward(req, resp);
+            resp.sendRedirect("/SIS/course/field?resourceId="+courseEntity.getId());
         }
     }
 

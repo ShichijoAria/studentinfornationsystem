@@ -53,8 +53,7 @@ public class TeacherController extends BaseServlet{
         if(teacherEntity.getId()!=null&&teacherEntity.getId().trim().length()>0)
             result=teacherService.insert(teacherEntity);
         if(result>0) {
-            this.setTeacher(req,resp,teacherEntity);
-            req.getRequestDispatcher("/teacher/field?id="+teacherEntity.getId()).forward(req, resp);
+            resp.sendRedirect("/SIS/teacher/field?resourceId="+teacherEntity.getId());
         }
     }
 

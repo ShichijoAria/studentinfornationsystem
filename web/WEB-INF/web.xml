@@ -39,6 +39,15 @@
         <url-pattern>/teacher/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>student</servlet-name>
+        <servlet-class>Controller.StudentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>student</servlet-name>
+        <url-pattern>/student/*</url-pattern>
+    </servlet-mapping>
+
     <filter>
         <filter-name>loginFilter</filter-name><!--登录拦截器-->
         <filter-class>interceptor.LoginFilter</filter-class>
