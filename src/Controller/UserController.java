@@ -3,6 +3,7 @@ package Controller;
 import entity.UserEntity;
 import service.impl.UserService;
 import util.BaseServlet;
+import util.MyUtil;
 import util.Page;
 
 import javax.servlet.ServletException;
@@ -18,7 +19,7 @@ public class UserController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        String id=req.getParameter("searchId");
+        long id=new MyUtil().getLong(req.getParameter("searchId"));
         String name=req.getParameter("searchName");
         String type=req.getParameter("searchType");
         UserService userService=new UserService(new UserEntity(id,type,name,null));
@@ -58,7 +59,7 @@ public class UserController extends BaseServlet{
     }
 
     public UserEntity getUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String id=req.getParameter("id");
+        long id=Long.parseLong(req.getParameter("id"));
         String type=req.getParameter("type");
         String name=req.getParameter("name");
         String password=req.getParameter("password");

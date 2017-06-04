@@ -26,7 +26,7 @@ public class TeacherDao extends BaseDao{
                 sql+=" where ";
             }
             sql += " id like '%";
-            sql +=search.getId()==null?"":search.getId();
+            sql +=search.getId()<0?"":search.getId();
             sql +="%' and name like '%";
             sql +=search.getName()==null?"":search.getName();
             sql +="%'";
@@ -35,7 +35,7 @@ public class TeacherDao extends BaseDao{
         ResultSet rs=this.executeQuery(sql);
         try{
             while(rs.next()){
-                list.add(new TeacherEntity(rs.getString(1),rs.getString(2),rs.getString(3)));
+                list.add(new TeacherEntity(rs.getLong(1),rs.getString(2),rs.getString(3)));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class TeacherDao extends BaseDao{
         ResultSet rs=this.executeQuery(sql,id);
         try {
             if(rs.next()){
-                teacherEntity= new TeacherEntity(rs.getString(1),rs.getString(2),rs.getString(3));
+                teacherEntity= new TeacherEntity(rs.getLong(1),rs.getString(2),rs.getString(3));
             }
         } catch (SQLException e) {
             e.printStackTrace();

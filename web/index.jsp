@@ -99,6 +99,7 @@
           </a>
           <div class="content">
             <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+            <p><a id="TeachingClassQuery" class="child" href="javascript:void(0)">教学查询</a></p>
           </div>
         </div>
       </div>
@@ -200,6 +201,10 @@
     ;
     $('#StudentManagement').click(function () {
         $('iframe').attr("src","/SIS/student/view")
+    })
+    ;
+    $('#TeachingClassQuery').click(function () {
+        $('iframe').attr("src","/SIS/teachingClass/view")
     })
     ;
     checkHeight();

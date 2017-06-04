@@ -17,7 +17,7 @@ public class StudentDao extends BaseDao{
         String sql="select *from t_student where id !='0'";
         if(search!=null) {
             sql += " and id like '%";
-            sql +=search.getId()==null?"":search.getId();
+            sql +=search.getId()<0?"":search.getId();
             sql +="%' and name like '%";
             sql +=search.getName()==null?"":search.getName();
             sql +="%' and gender like '%";
@@ -30,7 +30,7 @@ public class StudentDao extends BaseDao{
         ResultSet rs=this.executeQuery(sql);
         try {
             while (rs.next()) {
-                list.add(new StudentEntity(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                list.add(new StudentEntity(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8)));
             }
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public class StudentDao extends BaseDao{
         ResultSet rs=this.executeQuery(sql,id);
         try {
             if(rs.next()){
-                studentEntity=new StudentEntity(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                studentEntity=new StudentEntity(rs.getLong(1), rs.getString(2), rs.getString(3), rs.getString(4),
                         rs.getString(5), rs.getString(6), rs.getDate(7), rs.getString(8));
             }
         } catch (SQLException e) {

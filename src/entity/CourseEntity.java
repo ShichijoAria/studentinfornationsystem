@@ -4,22 +4,22 @@ package entity;
  * Created by Ace on 2017/5/26.
  */
 public class CourseEntity {
-    private String id;
+    private long id;
     private String name;
 
     public CourseEntity() {
     }
 
-    public CourseEntity(String id, String name) {
+    public CourseEntity(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

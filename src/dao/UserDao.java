@@ -26,7 +26,7 @@ public class UserDao extends BaseDao{
             ResultSet rs = this.executeQuery(sql, u.getId(), u.getPassword());
             try {
                 if (rs.next()) {
-                    return new UserEntity(rs.getString(1), type, rs.getString(2), rs.getString(3));
+                    return new UserEntity(rs.getLong(1), type, rs.getString(2), rs.getString(3));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -43,17 +43,17 @@ public class UserDao extends BaseDao{
 
     public List<UserEntity> getList(UserEntity search){
         String t="";
-        String sql1="SELECT id,'学生' AS type,name,password FROM t_student where id!='0' ";
+        String sql1="SELECT id,'学生' AS type,name,password FROM t_student ";
         String sql2="SELECT id,'教师' AS type,name,password FROM t_teacher ";
         String sql3="SELECT id,'管理员' AS type,name,password FROM t_administrator ";
         String sql= sql1 + "UNION " + sql2 + "UNION " + sql3;
         if(search!=null) {
             t += " id like '%";
-            t += search.getId() == null ? "" : search.getId();
+            t += search.getId() <0 ? "" : search.getId();
             t += "%' and name like '%";
             t += search.getName() == null ? "" : search.getName();
             t += "%' ";
-            sql1 += "and" + t;
+            sql1 += "where" + t;
             sql2 += "where " + t;
             sql3 += "where " + t;
             sql= sql1 + "UNION " + sql2 + "UNION " + sql3;
@@ -71,7 +71,7 @@ public class UserDao extends BaseDao{
         ResultSet rs= this.executeQuery(sql);
         try {
             while(rs.next()){
-                list.add(new UserEntity(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                list.add(new UserEntity(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4)));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -79,6 +79,7 @@ public class UserDao extends BaseDao{
         }finally{
             this.close();
         }
+        System.out.println(sql);
         return list;
     }
 
@@ -89,7 +90,7 @@ public class UserDao extends BaseDao{
         ResultSet rs = this.executeQuery(sql, id,id,id);
         try {
             if(rs.next()){
-                return new UserEntity(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4));
+                return new UserEntity(rs.getLong(1),rs.getString(2),rs.getString(3),rs.getString(4));
             }
         } catch (SQLException e) {
             e.printStackTrace();

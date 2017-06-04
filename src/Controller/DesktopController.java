@@ -23,7 +23,7 @@ public class DesktopController extends BaseServlet{
     }
 
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        UserEntity user=new UserService().login(new UserEntity(req.getParameter("type"),req.getParameter("id"),req.getParameter("password")));
+        UserEntity user=new UserService().login(new UserEntity(Long.parseLong(req.getParameter("id")),req.getParameter("type"),req.getParameter("password")));
         if(user!=null) {
             req.getSession().setAttribute("userId",user.getId());
             req.getSession().setAttribute("userPassword",user.getPassword());

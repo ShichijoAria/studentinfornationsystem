@@ -2,6 +2,7 @@ package interceptor;
 
 import entity.UserEntity;
 import service.impl.UserService;
+import util.MyUtil;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,8 @@ public class LoginFilter implements Filter{
         HttpServletRequest req = (HttpServletRequest) servletRequest;
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         HttpSession session=req.getSession();
-        UserEntity u=new UserService().login(new UserEntity((String)session.getAttribute("userType"),(String)session.getAttribute("userId"),(String)session.getAttribute("userPassword")));
+        String id=String.valueOf(session.getAttribute("userId"));
+        UserEntity u=new UserService().login(new UserEntity(new MyUtil().getLong(id),(String)session.getAttribute("userType"),(String)session.getAttribute("userPassword")));
             if(u!=null){
             filterChain.doFilter(servletRequest,servletResponse);
         }else {

@@ -17,7 +17,7 @@ public class CourseDao extends BaseDao{
         String sql="select * from t_course";
         if(search!=null) {
             sql += " where id like '%";
-            sql +=search.getId()==null?"":search.getId();
+            sql +=search.getId()<0?"":search.getId();
             sql +="%' and name like '%";
             sql +=search.getName()==null?"":search.getName();
             sql +="%'";
@@ -26,7 +26,7 @@ public class CourseDao extends BaseDao{
         ResultSet rs= this.executeQuery(sql);
         try {
             while(rs.next()){
-                list.add(new CourseEntity(rs.getString(1),rs.getString(2)));
+                list.add(new CourseEntity(rs.getLong(1),rs.getString(2)));
             }
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -43,7 +43,7 @@ public class CourseDao extends BaseDao{
         ResultSet rs=this.executeQuery(sql,id);
         try {
             if(rs.next()){
-                courseEntity= new CourseEntity(rs.getString(1),rs.getString(2));
+                courseEntity= new CourseEntity(rs.getLong(1),rs.getString(2));
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -40,6 +40,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>teachingClass</servlet-name>
+        <servlet-class>Controller.TeachingClassController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teachingClass</servlet-name>
+        <url-pattern>/teachingClass/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>student</servlet-name>
         <servlet-class>Controller.StudentController</servlet-class>
     </servlet>

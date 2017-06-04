@@ -2,15 +2,14 @@ package Controller;
 
 import entity.CourseEntity;
 import service.impl.CourseService;
-import sun.dc.pr.PRError;
 import util.BaseServlet;
+import util.MyUtil;
 import util.Page;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +22,8 @@ public class CourseController extends BaseServlet{
         CourseService courseService=new CourseService();
         CourseEntity courseEntity=this.getCourse(req,resp);
         int result=0;
-        if(courseEntity.getId()!=null&&courseEntity.getId().trim().length()>0)
-            result=courseService.insert(courseEntity);
+        if(req.getParameter("id")!=null&&req.getParameter("id").trim().length()>0)
+        result=courseService.insert(courseEntity);
         if(result>0) {
             resp.sendRedirect("/SIS/course/field?resourceId="+courseEntity.getId());
         }
@@ -32,7 +31,7 @@ public class CourseController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        String id=req.getParameter("searchId");
+        long id=new MyUtil().getLong(req.getParameter("searchId"));
         String name=req.getParameter("searchName");
         CourseService courseService=new CourseService(new CourseEntity(id,name));
         List<CourseEntity> list=new ArrayList<CourseEntity>();
@@ -90,7 +89,7 @@ public class CourseController extends BaseServlet{
     public CourseEntity getCourse(HttpServletRequest req, HttpServletResponse resp){
         String id=req.getParameter("id");
         String name=req.getParameter("name");
-        return new CourseEntity(id,name);
+        return new CourseEntity(Long.parseLong(id),name);
     }
 
     public void setCourse(HttpServletRequest req, HttpServletResponse resp,CourseEntity courseEntity){

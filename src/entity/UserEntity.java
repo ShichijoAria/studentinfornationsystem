@@ -5,20 +5,20 @@ package entity;
  */
 public class UserEntity {
     private String type;//用户权限
-    private String id;////用户标识id
+    private long id;////用户标识id
     private String name;//用户名
     private String password;//用户密码
 
     public UserEntity() {
     }
 
-    public UserEntity(String id, String type, String password) {
+    public UserEntity(long id, String type, String password) {
         this.type = type;
         this.id = id;
         this.password = password;
     }
 
-    public UserEntity(String id, String type, String name, String password) {
+    public UserEntity(long id, String type, String name, String password) {
         this.type = type;
         this.id = id;
         this.name = name;
@@ -33,11 +33,11 @@ public class UserEntity {
         this.type = type;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

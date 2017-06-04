@@ -3,6 +3,7 @@ package Controller;
 import entity.StudentEntity;
 import service.impl.StudentService;
 import util.BaseServlet;
+import util.MyUtil;
 import util.Page;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ public class StudentController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        String id=req.getParameter("searchId");
+        long id=new MyUtil().getLong(req.getParameter("searchId"));
         String name=req.getParameter("searchName");
         String gender=req.getParameter("searchGender");
         StudentService studentService=new StudentService(new StudentEntity(id,name,gender));
@@ -52,7 +53,7 @@ public class StudentController extends BaseServlet{
         StudentService studentService=new StudentService();
         StudentEntity studentEntity=this.getStudent(req,resp);
         int result=0;
-        if(studentEntity.getId()!=null&&studentEntity.getId().trim().length()>0)
+        if(req.getParameter("id")!=null&&req.getParameter("id").trim().length()>0)
             result=studentService.insert(studentEntity);
         if(result>0) {
             resp.sendRedirect("/SIS/student/field?resourceId="+studentEntity.getId());
@@ -89,7 +90,7 @@ public class StudentController extends BaseServlet{
 
     public StudentEntity getStudent(HttpServletRequest req, HttpServletResponse resp){
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        String id=req.getParameter("id");
+        long id=Long.parseLong(req.getParameter("id"));
         String name=req.getParameter("name");
         String gender=req.getParameter("gender");
         String faculty=req.getParameter("faculty");

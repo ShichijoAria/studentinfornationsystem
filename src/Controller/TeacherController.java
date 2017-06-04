@@ -3,6 +3,7 @@ package Controller;
 import entity.TeacherEntity;
 import service.impl.TeacherService;
 import util.BaseServlet;
+import util.MyUtil;
 import util.Page;
 
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ public class TeacherController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        String id=req.getParameter("searchId");
+        long id=new MyUtil().getLong(req.getParameter("searchId"));
         String name=req.getParameter("searchName");
         String gender=req.getParameter("searchGender");
         TeacherService teacherService=new TeacherService(new TeacherEntity(id,name,gender));
@@ -50,7 +51,7 @@ public class TeacherController extends BaseServlet{
         TeacherService teacherService=new TeacherService();
         TeacherEntity teacherEntity=this.getTeacher(req,resp);
         int result=0;
-        if(teacherEntity.getId()!=null&&teacherEntity.getId().trim().length()>0)
+        if(req.getParameter("id")!=null&&req.getParameter("id").trim().length()>0)
             result=teacherService.insert(teacherEntity);
         if(result>0) {
             resp.sendRedirect("/SIS/teacher/field?resourceId="+teacherEntity.getId());
@@ -86,7 +87,7 @@ public class TeacherController extends BaseServlet{
     }
 
     public TeacherEntity getTeacher(HttpServletRequest req, HttpServletResponse resp){
-        String id=req.getParameter("id");
+        long id=Long.parseLong(req.getParameter("id"));
         String name=req.getParameter("name");
         String gender=req.getParameter("gender");
         return new TeacherEntity(id,name,gender);

@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by Ace on 2017/6/1.
  */
 public class StudentEntity {
-    private String id;
+    private long id;
     private String name;
     private String gender;
     private String faculty;
@@ -18,13 +18,13 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(String id, String name, String gender) {
+    public StudentEntity(long id, String name, String gender) {
         this.id = id;
         this.name = name;
         this.gender = gender;
     }
 
-    public StudentEntity(String id, String name, String gender, String faculty, String grade, String itemClass, Date timeOfEn, String identity) {
+    public StudentEntity(long id, String name, String gender, String faculty, String grade, String itemClass, Date timeOfEn, String identity) {
         this.id = id;
         this.name = name;
         this.gender = gender;
@@ -35,11 +35,11 @@ public class StudentEntity {
         this.identity = identity;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
