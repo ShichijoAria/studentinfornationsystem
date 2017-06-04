@@ -79,7 +79,6 @@ public class UserDao extends BaseDao{
         }finally{
             this.close();
         }
-        System.out.println(sql);
         return list;
     }
 

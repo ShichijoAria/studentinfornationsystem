@@ -7,6 +7,7 @@ import entity.TeacherEntity;
 import entity.TeachingClassEntity;
 import service.impl.TeachingClassService;
 import util.BaseServlet;
+import util.MyUtil;
 import util.Page;
 
 import javax.servlet.ServletException;
@@ -38,12 +39,12 @@ public class TeachingClassController extends BaseServlet{
 
     private void field(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TeachingClassService teachingClassService=new TeachingClassService();
-        String id=req.getParameter("resourceId");
-        if(id!=null) {
+        long id=new MyUtil().getLong(req.getParameter("resourceId"));
+        if(id>=0) {
             TeachingClassEntity teachingClassEntity = teachingClassService.getById(id);
             this.setTeachingClass(req,resp,teachingClassEntity);
             if(req.getParameter("curPage")!=null)
-                req.getSession().setAttribute("courseBack",req.getParameter("curPage"));
+                req.getSession().setAttribute("teachingClassBack",req.getParameter("curPage"));
             this.setList(req,resp);
             req.setAttribute("operation",true);
             req.getRequestDispatcher("/field/teachingClass.jsp").forward(req, resp);
@@ -61,22 +62,43 @@ public class TeachingClassController extends BaseServlet{
     private void insert(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
         TeachingClassService teachingClassService=new TeachingClassService();
         TeachingClassEntity teachingClassEntity=this.getTeachingClass(req,resp);
-        int result=0;
-        result=teachingClassService.insert(teachingClassEntity);
+        TeachingClassEntity newTeachingClassEntity=teachingClassService.insert(teachingClassEntity);
+        resp.sendRedirect("/SIS/teachingClass/field?resourceId="+newTeachingClassEntity.getId());
+    }
+
+    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        TeachingClassService teachingClassService=new TeachingClassService();
+        String id=req.getParameter("resourceId");
+        int result=teachingClassService.update(this.getTeachingClass(req,resp),Long.valueOf(id));
         if(result>0) {
-            resp.sendRedirect("/SIS/course/field?resourceId="+teachingClassEntity.getId());
+            resp.sendRedirect("/SIS/teachingClass/field?resourceId="+id);
+        }
+        else {
+            resp.sendError(404);
         }
     }
 
+    private void delete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        TeachingClassService teachingClassService=new TeachingClassService();
+        String[] items={};
+        if(req.getParameterValues("item")!=null) {
+            items = req.getParameterValues("item");
+            teachingClassService.delete(items);
+        }
+        if(req.getParameter("curPage")!=null)
+            resp.sendRedirect("/SIS/teachingClass/view?curPage="+req.getParameter("curPage"));
+    }
+
     public TeachingClassEntity getTeachingClass(HttpServletRequest req, HttpServletResponse resp){
-        String id=req.getParameter("couId");
-        String name=req.getParameter("teaId");
-        return new TeachingClassEntity(id,name);
+        long couId= new MyUtil().getLong(req.getParameter("couId"));
+        long teaId= new MyUtil().getLong(req.getParameter("teaId"));
+        return new TeachingClassEntity(couId,teaId);
     }
 
     public void setTeachingClass(HttpServletRequest req, HttpServletResponse resp,TeachingClassEntity teachingClassEntity){
         req.setAttribute("couId",teachingClassEntity.getCouId());
         req.setAttribute("teaId",teachingClassEntity.getTeaId());
+        req.setAttribute("id",teachingClassEntity.getId());
     }
 
     public void setList(HttpServletRequest req, HttpServletResponse resp){

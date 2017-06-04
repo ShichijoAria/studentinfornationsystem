@@ -13,6 +13,10 @@ public class TeachingClassEntity {
     public TeachingClassEntity() {
     }
 
+    public TeachingClassEntity(long id) {
+        this.id = id;
+    }
+
     public TeachingClassEntity(long couId, long teaId) {
         this.couId = couId;
         this.teaId = teaId;
@@ -21,6 +25,12 @@ public class TeachingClassEntity {
     public TeachingClassEntity(String couName, String teaName) {
         this.couName = couName;
         this.teaName = teaName;
+    }
+
+    public TeachingClassEntity(long id, long couId, long teaId) {
+        this.id = id;
+        this.couId = couId;
+        this.teaId = teaId;
     }
 
     public TeachingClassEntity(long id, long couId, long teaId, String couName, String teaName) {

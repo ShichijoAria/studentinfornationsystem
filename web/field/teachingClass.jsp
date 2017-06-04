@@ -21,7 +21,7 @@
     <script src="../js/util.js"></script>
 </head>
 <body>
-<form class="ui form" id="field" method="post" action="updateSetCourse.action" id="main">
+<form class="ui form" id="field" method="post" action="/SIS/teachingClass/update?resourceId=${id}" id="main">
     <div class="ui small menu" id="menu">
         <div class="left menu">
             <div class="item">
@@ -32,48 +32,49 @@
             </div>
         </div>
     </div>
-    <div class="ui segment grid">
-        <div class="ui two wide column input fieldinput">教师</div>
-        <div class="ui three wide column input">
-            <select class="ui search dropdown <c:if test="${!operation}">
-    disabled
-</c:if>" name="teaId">
-                <option value=""></option>
-                <c:forEach items="${teaList}" var="bean" begin="0" end="${teaList.size()}">
-                    <option value="${bean.id}"
-                            <c:if test="${bean.id}==${teaId}">
-                                selected="selected"
-                            </c:if>
-                    >${bean.name}</option>
-                </c:forEach>
-            </select>
+    <div class="ui segment stackable three column grid">
+        <div class="column">
+            <div class="ui black basic horizontal label">教师名称</div>
+            <div class="ui input">
+                <select class="ui search dropdown <c:if test="${!operation}">
+        disabled
+    </c:if>" name="teaId">
+                    <option value=""></option>
+                    <c:forEach items="${teaList}" var="bean" begin="0" end="${teaList.size()}">
+                        <option value="${bean.id}"
+                                <c:if test="${bean.id==teaId}">
+                                    selected="selected"
+                                </c:if>
+                        >${bean.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </div>
-        <div class="ui two wide column input fieldinput">课程</div>
-        <div class="ui three wide column input">
-            <select class="ui search dropdown <c:if test="${!operation}">
-    disabled
-</c:if>" name="selectCourse.couId">
-                <option value=""></option>
-                <c:forEach items="${couList}" var="bean" begin="0" end="${couList.size()}">
-                    <option value="${bean.id}"
-                            <c:if test="${bean.id==selectCourse.couId}">
-                                selected="selected"
-                            </c:if>
-                    >${bean.name}</option>
-                </c:forEach>
-            </select>
+        <div class="column">
+            <div class="ui black basic horizontal label">课程名称</div>
+            <div class="ui input">
+                <select class="ui search dropdown <c:if test="${!operation}">
+        disabled
+    </c:if>" name="couId">
+                    <option value=""></option>
+                    <c:forEach items="${couList}" var="bean" begin="0" end="${couList.size()}">
+                        <option value="${bean.id}"
+                                <c:if test="${bean.id==couId}">
+                                    selected="selected"
+                                </c:if>
+                        >${bean.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </div>
     </div>
     <div class="ui error message"></div>
 </form>
 <script>
-    $('.ui.dropdown')
-        .dropdown()
-    ;
     var strs= new Array(); //定义一数组
     strs=window.location.pathname.split("/");
-    if(strs.length>0&&strs[strs.length-1]=="newopen.action"){
-        $('form').attr('action','new.action');
+    if(strs.length>0&&strs[strs.length-1]=="open"){
+        $('form').attr('action','/SIS/teachingClass/insert');
     }
     $('#return').click(function () {
         $('#field')
@@ -81,7 +82,7 @@
                 fields: {}
             })
         ;
-        setAction('#field','${rtn}');
+        setAction('#field','/SIS/teachingClass/view?curPage=${sessionScope.teachingClassBack}');
     })
     ;
     $('#save').click(function () {
@@ -89,7 +90,7 @@
             .form({
                 fields: {
                     id: {
-                        identifier: 'course.id',
+                        identifier: 'id',
                         rules: [
                             {
                                 type: 'empty',
@@ -98,7 +99,7 @@
                         ]
                     },
                     name: {
-                        identifier: 'course.name',
+                        identifier: 'name',
                         rules: [
                             {
                                 type: 'empty',
@@ -112,6 +113,9 @@
         $('#field').submit()
     })
     ;
+    $('.ui.dropdown')
+        .dropdown()
+    ;/*下拉菜单初始化*/
 </script>
 </body>
 </html>

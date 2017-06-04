@@ -1,6 +1,7 @@
 package service.impl;
 
 import dao.TeachingClassDao;
+import entity.CourseEntity;
 import entity.TeachingClassEntity;
 import service.Service;
 
@@ -16,8 +17,12 @@ public class TeachingClassService implements Service{
     public TeachingClassService() {
     }
 
-    public int insert(TeachingClassEntity teachingClassEntity){
+    public TeachingClassEntity insert(TeachingClassEntity teachingClassEntity){
         return teachingClassDao.insert(teachingClassEntity);
+    }
+
+    public int update(TeachingClassEntity teachingClassEntity, long id){
+        return teachingClassDao.update(teachingClassEntity,id);
     }
 
     public TeachingClassService(TeachingClassEntity search) {
@@ -38,8 +43,11 @@ public class TeachingClassService implements Service{
                     "tc.couid=c.id AND tc.teaid =t.id "+s);
     }
 
-    public TeachingClassEntity getById(String id){
+    public TeachingClassEntity getById(long id){
         return teachingClassDao.getByID(id);
     }
 
+    public void delete(String[] id){
+        teachingClassDao.deleteByID(id,"t_teachingClass");
+    }
 }

@@ -139,6 +139,9 @@
     })
     ;
     $('.ui.input').outerWidth($('input').outerWidth())
+    $('.ui.dropdown')
+        .dropdown()
+    ;/*下拉菜单初始化*/
 </script>
 </body>
 </html>

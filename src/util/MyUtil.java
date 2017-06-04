@@ -11,7 +11,7 @@ public class MyUtil {
             }else
                 return -1;
         }catch (NumberFormatException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
         return -1;
     }

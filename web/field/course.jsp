@@ -31,7 +31,7 @@
     <div class="ui segment stackable three column grid">
         <div class="column">
             <div class="ui black basic horizontal label">课程编号</div>
-            <div class="ui three wide column input">
+            <div class="ui input">
                 <input type="text" name="id" value="${id}">
             </div>
         </div>
