@@ -39,7 +39,7 @@
         <a id="arrow" href="javascript:void(0);"><i class="icon arrow left"></i></a>
         </div>
         <div class="item indexmenu">
-        <a href="javascript:void(0);" class="menu"><i class="home icon"></i> 主页</a>
+        <a id="homepage" href="javascript:void(0);" class="menu"><i class="home icon"></i> 主页</a>
         </div>
         <div class="item indexmenu">
         <div class="ui input action">
@@ -93,7 +93,7 @@
         </div>
         <div class="item acc">
           <a class="title" style="color:#AEB7C2;">
-            <i class="icon users padrig"></i>
+            <i class="icon write padrig"></i>
             课程管理
             <i class="dropdown icon"></i>
           </a>
@@ -105,7 +105,7 @@
       </div>
     <div class="pusher">
     <div class="ui segment">
-      <iframe class="" id="myframe" src="/SIS/user/view" height="95%" width="100%" frameborder="no" border="0" ></iframe>
+      <iframe class="" id="myframe" src="/SIS/desktop/welcome" height="95%" width="100%" frameborder="no" border="0" ></iframe>
     </div>
     </div>
     </div>
@@ -205,6 +205,14 @@
     ;
     $('#TeachingClassQuery').click(function () {
         $('iframe').attr("src","/SIS/teachingClass/view")
+    })
+    ;
+    $('#homepage').click(function () {
+        $('iframe').attr("src","/SIS/desktop/welcome")
+    })
+    ;
+    $('.circular.users.icon').click(function () {
+        $('iframe').attr("src","/SIS/desktop/welcome")
     })
     ;
     checkHeight();

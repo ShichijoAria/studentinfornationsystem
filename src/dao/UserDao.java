@@ -1,6 +1,7 @@
 package dao;
 
 import entity.UserEntity;
+import entity.VisitedEntity;
 import util.BaseDao;
 
 import java.sql.ResultSet;
@@ -109,5 +110,67 @@ public class UserDao extends BaseDao{
             sql = "update t_student set password=? where id=?";
         }
         return this.executeUpdate(sql, u.getPassword(),id);
+    }
+
+    public void visitedCount(){
+        this.execute("CALL statistical()");
+        this.close();
+    }
+
+    public long countAll(){
+        String sql="SELECT SUM(visited)FROM t_statistical";
+        ResultSet rs = this.executeQuery(sql);
+        try {
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
+
+    public List<Integer> statistical(){
+        String sql="SELECT (SELECT COUNT(*) FROM t_student)," +
+                "(SELECT COUNT(*) FROM t_teachingclass)," +
+                "(SELECT COUNT(*) FROM t_course)," +
+                "(SELECT COUNT(*) FROM t_teacher)";
+        List<Integer> list = new ArrayList<Integer>();
+        ResultSet rs= this.executeQuery(sql);
+        try {
+            if(rs.next()){
+                for (int i = 0; i < 4; i++) {
+                    list.add(rs.getInt(i+1));
+                }}
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            this.close();
+        }
+        return list;
+    }
+
+    public List<VisitedEntity> count(){
+        String sql="SELECT *FROM t_statistical ORDER BY i_date";
+        List<VisitedEntity> list = new ArrayList<VisitedEntity>();
+        ResultSet rs= this.executeQuery(sql);
+        try {
+            while(rs.next()){
+                list.add(new VisitedEntity(rs.getLong(1),rs.getDate(2)));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }finally{
+            this.close();
+        }
+        return list;
     }
 }

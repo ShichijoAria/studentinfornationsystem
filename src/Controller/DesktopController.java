@@ -1,5 +1,6 @@
 package Controller;
 
+import dao.UserDao;
 import entity.UserEntity;
 import service.impl.UserService;
 import util.BaseServlet;
@@ -25,6 +26,7 @@ public class DesktopController extends BaseServlet{
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserEntity user=new UserService().login(new UserEntity(Long.parseLong(req.getParameter("id")),req.getParameter("type"),req.getParameter("password")));
         if(user!=null) {
+            new UserDao().visitedCount();
             req.getSession().setAttribute("userId",user.getId());
             req.getSession().setAttribute("userPassword",user.getPassword());
             req.getSession().setAttribute("userName",user.getName());
@@ -41,6 +43,13 @@ public class DesktopController extends BaseServlet{
         req.getSession().removeAttribute("userName");
         req.getSession().removeAttribute("userType");
         resp.sendRedirect("/SIS/desktop/signIn");
+    }
+
+    private void welcome(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        req.setAttribute("countAll",new UserDao().countAll());
+        req.setAttribute("list",new UserDao().statistical());
+        req.setAttribute("statistical",new UserDao().count());
+        req.getRequestDispatcher("/welcome/welcome.jsp").forward(req, resp);
     }
 
     @Override
