@@ -69,7 +69,7 @@
           <i class="circular user icon"></i>
           <div class="menu">
             <a class="item"><i class="icon setting"></i> 个人信息</a>
-            <a class="item" href="logout.action"><i class="icon sign out"></i> 注销</a>
+            <a class="item" href="/SIS/desktop/loginOut"><i class="icon sign out"></i> 注销</a>
           </div>
         </div>
         <div class="item indexmenu" style="width: 33%!important;">
@@ -79,6 +79,7 @@
     </div>
       <div class="ui bottom attached segment pushable" style="background-color: #F3F5F8!important;">
       <div class="ui inverted labeled icon left inline vertical sidebar menu accordion" style="width: 260px">
+        <c:if test="${sessionScope.userType==\"1\"}">
         <div class="item acc">
           <a class="title" style="color:#AEB7C2;">
             <i class="icon users padrig"></i>
@@ -91,6 +92,7 @@
           <p><a id="StudentManagement" class="child" href="javascript:void(0)">学生管理</a></p>
           </div>
         </div>
+        </c:if>
         <div class="item acc">
           <a class="title" style="color:#AEB7C2;">
             <i class="icon write padrig"></i>
@@ -98,8 +100,19 @@
             <i class="dropdown icon"></i>
           </a>
           <div class="content">
-            <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+            <c:if test="${sessionScope.userType==\"1\"}">
+              <p><a id="CourseQuery" class="child" href="javascript:void(0)">课程查询</a></p>
+            </c:if>
+            <c:if test="${sessionScope.userType!=\"3\"}">
             <p><a id="TeachingClassQuery" class="child" href="javascript:void(0)">教学查询</a></p>
+            </c:if>
+            <c:if test="${sessionScope.userType==\"3\"}">
+              <p><a id="SelectCourse" class="child" href="javascript:void(0)">选择课程</a></p>
+              <p><a id="MyGrade" class="child" href="javascript:void(0)">我的课程</a></p>
+            </c:if>
+            <c:if test="${sessionScope.userType==\"2\"}">
+              <p><a id="MyStudent" class="child" href="javascript:void(0)">我的学生</a></p>
+            </c:if>
           </div>
         </div>
       </div>
@@ -209,6 +222,18 @@
     ;
     $('#homepage').click(function () {
         $('iframe').attr("src","/SIS/desktop/welcome")
+    })
+    ;
+    $('#SelectCourse').click(function () {
+        $('iframe').attr("src","/SIS/teachingClass/view")
+    })
+    ;
+    $('#MyGrade').click(function () {
+        $('iframe').attr("src","/SIS/grade/view")
+    })
+    ;
+    $('#MyStudent').click(function () {
+        $('iframe').attr("src","/SIS/grade/view")
     })
     ;
     $('.circular.users.icon').click(function () {

@@ -4,6 +4,8 @@
     bottom: 0px;
     left: 0px;
     text-align: center;
+    z-index: 99;
+    margin: 0 0 0 0!important;
 }
 .long.arrow.icon{
     color: white;
@@ -38,4 +40,11 @@ table{
 }
 tr:hover{
     cursor:pointer!important;
+}
+.ui.black.inverted.button:hover{
+    color: white!important;
+}
+.ui.black.inverted.button{
+    color: black!important;
+    font-weight: 100 !important;
 }

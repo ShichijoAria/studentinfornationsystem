@@ -25,9 +25,20 @@ public class TeachingClassController extends BaseServlet{
         String curPage=req.getParameter("curPage");
         String teaName=req.getParameter("searchTeaName");
         String couName=req.getParameter("searchCouName");
+        long userId=(long)req.getSession().getAttribute("userId");
+        String userType=(String)req.getSession().getAttribute("userType");
         TeachingClassService teachingClassService=new TeachingClassService(new TeachingClassEntity(couName,teaName));
         List<TeachingClassEntity> list=new ArrayList<TeachingClassEntity>();
-        list.addAll(teachingClassService.getList());
+        if(userType.equals("1")) {
+            list.addAll(teachingClassService.getList());
+            req.setAttribute("operation",true);
+        }else if(userType.equals("2")) {
+            list.addAll(teachingClassService.getList(userId,2));
+            req.setAttribute("operation", false);
+        }else if(userType.equals("3")) {
+            list.addAll(teachingClassService.getList(userId,3));
+            req.setAttribute("operation", false);
+        }
         Page page=new Page();
         initialize(page,list.size(),teachingClassService,curPage);
         req.setAttribute("page",page);
@@ -39,6 +50,7 @@ public class TeachingClassController extends BaseServlet{
 
     private void field(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         TeachingClassService teachingClassService=new TeachingClassService();
+        req.setAttribute("operation",false);
         long id=new MyUtil().getLong(req.getParameter("resourceId"));
         if(id>=0) {
             TeachingClassEntity teachingClassEntity = teachingClassService.getById(id);
@@ -46,7 +58,8 @@ public class TeachingClassController extends BaseServlet{
             if(req.getParameter("curPage")!=null)
                 req.getSession().setAttribute("teachingClassBack",req.getParameter("curPage"));
             this.setList(req,resp);
-            req.setAttribute("operation",true);
+            if(((String)req.getSession().getAttribute("userType")).equals("1"))
+                req.setAttribute("operation",true);
             req.getRequestDispatcher("/field/teachingClass.jsp").forward(req, resp);
         }else
             resp.sendError(404);

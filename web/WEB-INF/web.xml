@@ -40,6 +40,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>grade</servlet-name>
+        <servlet-class>Controller.GradeController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>grade</servlet-name>
+        <url-pattern>/grade/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>teachingClass</servlet-name>
         <servlet-class>Controller.TeachingClassController</servlet-class>
     </servlet>
@@ -72,6 +81,10 @@
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/course/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/teacher/*</url-pattern>
     </filter-mapping>
 
     <filter>

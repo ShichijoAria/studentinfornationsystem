@@ -33,7 +33,7 @@ public class CourseService implements Service{
     }
 
     public void delete(String[] id){
-        courseDao.deleteByID(id,"t_course");
+        courseDao.deleteById(id,"t_course");
     }
 
     @Override

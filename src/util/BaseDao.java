@@ -92,7 +92,7 @@ public class BaseDao {
         return null;
     }
 
-    public  void deleteByID(String[] id,String tlk){
+    public  void deleteById(String[] id, String tlk){
         if(id.length>0) {
             String sql = "delete from ";
             sql+=tlk;
@@ -110,4 +110,5 @@ public class BaseDao {
             }
         }
     }
+
 }

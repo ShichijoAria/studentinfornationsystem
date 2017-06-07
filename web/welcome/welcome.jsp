@@ -31,21 +31,23 @@
     <div class="sub header">Business Process Management</div>
 </h2>
 <div class="ui grid" style="margin: 10px 10px 10px 10px">
-    <div class="row">
-        <div class="ui statistic three wide column left floated small">
-            <div class="value">
-                <i class="icon unhide"></i>
-                ${countAll}
-            </div>
-            <div class="label">
-                登录次数
+    <c:if test="${sessionScope.userType==\"1\"}">
+        <div class="row">
+            <div class="ui statistic three wide column left floated small">
+                <div class="value">
+                    <i class="icon unhide"></i>
+                        ${countAll}
+                </div>
+                <div class="label">
+                    登录次数
+                </div>
             </div>
         </div>
-    </div>
     <div class="row ui grid stackable">
         <div id="main" class="eight wide column" style="height: 450px"></div>
         <div id="visiteChart" class="eight wide column" style="height: 450px"></div>
     </div>
+    </c:if>
 </div>
 <script>
     // 基于准备好的dom，初始化echarts实例

@@ -1,7 +1,6 @@
 package service.impl;
 
 import dao.TeachingClassDao;
-import entity.CourseEntity;
 import entity.TeachingClassEntity;
 import service.Service;
 
@@ -31,6 +30,32 @@ public class TeachingClassService implements Service{
 
     @Override
     public List getList() {
+        return teachingClassDao.getList("SELECT tc.*,c.name,t.name FROM t_teachingclass tc,t_teacher t,t_course c WHERE " +
+                    "tc.couid=c.id AND tc.teaid =t.id "+this.condition());
+    }
+
+    public TeachingClassEntity getById(long id){
+        return teachingClassDao.getByID(id);
+    }
+
+    public void delete(String[] id){
+        teachingClassDao.deleteById(id,"t_teachingClass");
+    }
+
+    public List getList(long id,int point){
+        if(point==2)
+            return teachingClassDao.getList("SELECT tc.*,c.name,t.name FROM t_teachingclass tc,t_teacher t,t_course c WHERE " +
+                "tc.couid=c.id AND tc.teaid =t.id and t.id="+id+" "+this.condition());
+        return teachingClassDao.getList("SELECT  tc.*,c.name,t.name " +
+                "FROM t_teachingclass tc,t_teacher t,t_course c  " +
+                "WHERE tc.couid=c.id AND tc.teaid=t.id " +
+                " AND tc.id NOT IN" +
+                " (SELECT tc.id " +
+                " FROM t_teachingclass tc,t_course c,t_grade g,t_student s WHERE s.id="+id+
+                " AND c.id=tc.couid AND g.classid=tc.id AND s.id=g.stuid) "+this.condition());
+    }
+
+    public String condition(){
         String s="";
         if(search!=null) {
             s += " and c.name like '%";
@@ -39,15 +64,6 @@ public class TeachingClassService implements Service{
             s +=search.getTeaName()==null?"":search.getTeaName();
             s +="%'";
         }
-        return teachingClassDao.getList("SELECT tc.*,c.name,t.name FROM t_teachingclass tc,t_teacher t,t_course c WHERE " +
-                    "tc.couid=c.id AND tc.teaid =t.id "+s);
-    }
-
-    public TeachingClassEntity getById(long id){
-        return teachingClassDao.getByID(id);
-    }
-
-    public void delete(String[] id){
-        teachingClassDao.deleteByID(id,"t_teachingClass");
+        return s;
     }
 }

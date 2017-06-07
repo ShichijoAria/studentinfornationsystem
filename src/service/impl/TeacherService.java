@@ -33,7 +33,7 @@ public class TeacherService implements Service{
     }
 
     public void delete(String[] id){
-        teacherDao.deleteByID(id,"t_teacher");
+        teacherDao.deleteById(id,"t_teacher");
     }
 
     public List<TeacherEntity> getList(){

@@ -9,13 +9,15 @@
 </tbody>
 </table>
 </div>
+</div>
+</form>
 <div class="ui tiny green inverted three item menu " id="foot">
     <a id="previous" class="item foot">
         <i class="long arrow left icon"></i>
         上页
     </a>
     <a class="item foot">
-        <select name="curPage" id="page" class="ui fluid dropdown">
+        <select name="curPage" id="page" class="ui fluid dropdown" form="main">
             <%
                 int i=1;
             %>
@@ -37,8 +39,6 @@
         <i class="long arrow right icon"></i>
     </a>
 </div>
-</div>
-</form>
 <script>
     changeSize();
     $('.ui.dropdown').dropdown()/*下拉菜单初始化*/
@@ -49,7 +49,7 @@
         context: $('form'),
         useLegacy:true,
     })
-    $('#search,.close.icon').click(function () {
+    $('#search,.ui.right.grey.large.corner.label').click(function () {
         $('.ui.sidebar')
             .sidebar('toggle')
     })
@@ -86,6 +86,12 @@
     $('#reset').click(function () {
         $('.input').val("");
     });
+    $('.ui.black.inverted.small.button').click(function () {
+        setAction('form',"/SIS/grade/insert?classId="+$(this).parent().parent().attr("id"))
+    })
+    $('.ui.red.inverted.small.button').click(function () {
+        setAction('form',"/SIS/grade/delete?id="+$(this).parent().parent().attr("id"))
+    })
 </script>
 </body>
 </html>

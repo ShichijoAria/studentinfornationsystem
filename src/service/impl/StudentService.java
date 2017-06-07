@@ -39,7 +39,7 @@ public class StudentService implements Service{
     }
 
     public void delete(String[] id){
-        studentDao.deleteByID(id,"t_student");
+        studentDao.deleteById(id,"t_student");
     }
 
 }
