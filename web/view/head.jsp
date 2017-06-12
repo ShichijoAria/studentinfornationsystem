@@ -38,5 +38,3 @@
         </a>
         <div class="content">
             <div class="ui grid stackable segment three column vertical container">
-                <div class="column">
-                    <div class="ui right pointing black basic label">

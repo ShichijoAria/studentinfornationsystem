@@ -19,7 +19,19 @@ public class GradeEntity {
     public GradeEntity() {
     }
 
-    public GradeEntity(String teaName, String couName, String stuName, float grade) {
+    public GradeEntity(String teaName, String couName, String stuName) {
+        this.teaName = teaName;
+        this.couName = couName;
+        this.stuName = stuName;
+    }
+
+    public GradeEntity(String couName, float grade) {
+        this.couName = couName;
+        this.grade = grade;
+    }
+
+    public GradeEntity(String id, String teaName, String couName, String stuName, float grade) {
+        this.id = id;
         this.teaName = teaName;
         this.couName = couName;
         this.stuName = stuName;

@@ -12,19 +12,34 @@
     String viewName="grade";
 %>
 <%@ include file="head.jsp"  %>
-课程编号
+<c:if test="${sessionScope.userType!=\"2\"}">
+<div class="column">
+    <div class="ui right pointing black basic label">
+        教师名称
+    </div>
+    <div class="ui input">
+        <input class="input" type="text" name="searchTeaName" value="${param.searchTeaName}">
+        <i class="icon"></i>
+    </div>
 </div>
-<div class="ui input">
-    <input class="input" type="text" name="searchId" value="${param.searchId}">
-    <i class="icon"></i>
+</c:if>
+<c:if test="${sessionScope.userType!=\"3\"}">
+<div class="column">
+    <div class="ui right pointing black basic label">
+        学生名称
+    </div>
+    <div class="ui input">
+        <input class="input" type="text" name="searchStuName" value="${param.searchStuName}">
+        <i class="icon"></i>
+    </div>
 </div>
-</div>
+</c:if>
 <div class="column">
     <div class="ui right pointing black basic label">
         课程名称
     </div>
     <div class="ui input">
-        <input class="input" type="text" name="searchName" value="${param.searchName}">
+        <input class="input" type="text" name="searchCouName" value="${param.searchCouName}">
     </div>
 </div>
 <div style="text-align: center;width:100%;padding-top: 5%">
@@ -68,8 +83,8 @@
                     </div>
                 </th>
                 <c:if test="${sessionScope.userType==\"2\"}">
-                    <th class="seven wide">学生名称</th>
-                    <th class="seven wide">课程名称</th>
+                    <th class="eight wide">学生名称</th>
+                    <th class="eight wide">课程名称</th>
                 </c:if>
                 <c:if test="${sessionScope.userType==\"3\"}">
                     <th class="seven wide">教师名称</th>

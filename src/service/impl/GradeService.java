@@ -24,8 +24,8 @@ public class GradeService implements Service{
         return gradeDao.insert(gradeEntity);
     }
 
-    public int update(GradeEntity gradeEntity,String id){
-        return gradeDao.update(gradeEntity,id);
+    public int update(float grade,String id){
+        return gradeDao.update(grade,id);
     }
 
     public GradeEntity getById(String id){
@@ -37,15 +37,14 @@ public class GradeService implements Service{
     }
 
     public List<GradeEntity> getList(long id,int point){
-        String sql="";
+        String sql="SELECT CONCAT(g.stuid,':',g.classid)as id ,t.name,c.name,s.name " +
+                "FROM t_student s, t_grade g,t_teacher t,t_teachingclass tc,t_course c " +
+                "WHERE g.classid=tc.id AND tc.couid=c.id AND tc.teaid=t.id AND g.stuid=s.id and";
         if(point==3){
-            sql="SELECT CONCAT(g.stuid,':',g.classid)as id ,t.name,c.name,s.name " +
-                    "FROM t_student s, t_grade g,t_teacher t,t_teachingclass tc,t_course c " +
-                    "WHERE g.classid=tc.id AND tc.couid=c.id AND tc.teaid=t.id AND g.stuid=s.id and s.id="+id;
+            sql+=" s.id="+id;
         }else if(point==2){
-            sql="SELECT CONCAT(g.stuid,':',g.classid)as id ,t.name,c.name,s.name " +
-                    "FROM t_student s, t_grade g,t_teacher t,t_teachingclass tc,t_course c " +
-                    "WHERE g.classid=tc.id AND tc.couid=c.id AND tc.teaid=t.id AND g.stuid=s.id and t.id="+id;
+            System.out.println(sql);
+            sql+=" t.id="+id;
         }
         return gradeDao.getList(sql,search);
     }

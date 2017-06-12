@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<%=basePath%>modules/semantic.css">
     <script src="<%=basePath%>modules/semantic.min.js"></script>
     <script src="<%=basePath%>modules/echarts-all-3.js"></script>
+    <script src="<%=basePath%>js/util.js"></script>
     <link rel="stylesheet" href="<%=basePath%>css/index.css">
     <link rel="stylesheet" href="<%=basePath%>css/general.css">
 </head>
@@ -43,13 +44,48 @@
                 </div>
             </div>
         </div>
-    <div class="row ui grid stackable">
-        <div id="main" class="eight wide column" style="height: 450px"></div>
-        <div id="visiteChart" class="eight wide column" style="height: 450px"></div>
-    </div>
+        <div class="row ui grid stackable">
+            <div id="main" class="eight wide column" style="height: 450px"></div>
+            <div id="visiteChart" class="eight wide column" style="height: 450px"></div>
+        </div>
+    </c:if>
+    <c:if test="${sessionScope.userType==\"2\"}">
+        <div class="row">
+            <div class="ui statistic three wide column left floated small">
+                <div class="value">
+                    <i class="icon book"></i>
+                    ${countClass}
+                </div>
+                <div class="label">
+                    班级总数
+                </div>
+            </div>
+        </div>
+        <c:forEach var="map" items="${countGrades}">
+            <div class="sixteen wide column">
+                <div id="id${map.key.id}" class="eight wide column" style="height: 450px"></div>
+            </div>
+        </c:forEach>
+    </c:if>
+    <c:if test="${sessionScope.userType==\"3\"}">
+        <div class="row">
+            <div class="ui statistic three wide column left floated small">
+                <div class="value">
+                    <i class="icon calendar"></i>
+                        ${countCourses}
+                </div>
+                <div class="label">
+                    我的课程
+                </div>
+            </div>
+        </div>
+        <div id="course" class="sixteen wide column" style="height: 450px;border-radius: 20px">
+
+        </div>
     </c:if>
 </div>
 <script>
+<c:if test="${sessionScope.userType==\"1\"}">
     // 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
@@ -83,6 +119,11 @@
             trigger: 'item',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
                 type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            feature: {
+                saveAsImage: {
+                    pixelRatio: 2
+                }
             }
         },
         grid: {
@@ -150,6 +191,11 @@
                 type: 'cross',
                 label: {
                     backgroundColor: '#6a7985'
+                }
+            },
+            feature: {
+                saveAsImage: {
+                    pixelRatio: 2
                 }
             }
         },
@@ -228,7 +274,153 @@
     };
 
     visiteChart.setOption(visitedOption);
+</c:if>
+<c:if test="${sessionScope.userType==\"2\"}">
+    <c:forEach var="map" items="${countGrades}">
+var id${map.key.id} = echarts.init(document.getElementById('id${map.key.id}'));
 
+var xdata${map.key.id}=[<c:forEach var="bean" items="${map.value}" varStatus="stat2">
+    '${bean.stuName}'<c:if test="${!stat2.last}">,</c:if></c:forEach>
+]
+var ydata${map.key.id}=[<c:forEach var="bean" items="${map.value}" varStatus="stat2">
+    ${bean.grade}<c:if test="${!stat2.last}">,</c:if>
+    </c:forEach>]
+
+var option${map.key.id} = {
+    color:[getRandomColor()],
+    title: {
+        text: '${map.key.name}成绩分布'
+    },
+    legend: {
+        data: ['${map.key.name}'],
+        align: 'left'
+    },
+    toolbox: {
+        // y: 'bottom',
+        feature: {
+            saveAsImage: {
+                pixelRatio: 2
+            }
+        }
+    },
+    tooltip: {},
+    xAxis: {
+        show:false,
+        data: xdata${map.key.id},
+        silent: false,
+        splitLine: {
+            show: false
+        },
+    },
+    yAxis: {
+    },
+    series: [{
+        name:'${map.key.name}',
+        type: 'bar',
+        barMaxWidth:'100px',
+        data: ydata${map.key.id},
+        animationDelay: function (idx) {
+            return idx * 10;
+        },
+        markPoint: {
+            data: [
+                {type: 'max', name: '最大值'},
+                {type: 'min', name: '最小值'}
+            ]
+        },
+        markLine: {
+            data: [
+                {type: 'average', name: '平均值'}
+            ]
+        }
+    }],
+    animationEasing: 'elasticOut',
+    animationDelayUpdate: function (idx) {
+        return idx * 5;
+    }
+};
+id${map.key.id}.setOption(option${map.key.id});
+</c:forEach>
+</c:if>
+<c:if test="${sessionScope.userType==\"3\"}">
+var course = echarts.init(document.getElementById('course'));
+courseOption = {
+    backgroundColor: '#2c343c',
+    title: {
+        text: '成绩分布',
+        left: 'center',
+        top: 20,
+        textStyle: {
+            color: '#ccc'
+        }
+    },
+
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c}",
+        feature: {
+            saveAsImage: {
+                pixelRatio: 2,
+                show:true
+            }
+        }
+    },
+
+    visualMap: {
+        show: false,
+        min: -60,
+        max: 180,
+        inRange: {
+            colorLightness: [0, 1]
+        }
+    },
+    series : [
+        {
+            name:'学科成绩',
+            type:'pie',
+            radius : '55%',
+            center: ['50%', '50%'],
+            data:[
+                <c:forEach items="${list}" var="bean" begin="0" end="${list.size()}" varStatus="stat">
+                {value:${bean.grade},name:'${bean.couName}'}<c:if test="${!stat.last}">,</c:if>
+                </c:forEach>
+            ].sort(function (a, b) { return a.value - b.value; }),
+            roseType: 'radius',
+            label: {
+                normal: {
+                    textStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    lineStyle: {
+                        color: 'rgba(255, 255, 255, 0.3)'
+                    },
+                    smooth: 0.2,
+                    length: 10,
+                    length2: 20
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: '#c23531',
+                    shadowBlur: 200,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            },
+
+            animationType: 'scale',
+            animationEasing: 'elasticOut',
+            animationDelay: function (idx) {
+                return Math.random() * 200;
+            }
+        }
+    ]
+};
+course.setOption(courseOption);
+</c:if>
 </script>
 </body>
 </html>

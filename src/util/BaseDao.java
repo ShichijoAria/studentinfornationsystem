@@ -111,4 +111,21 @@ public class BaseDao {
         }
     }
 
+    public long getLong(String sql){
+        ResultSet rs = this.executeQuery(sql);
+        try {
+            if (rs.next()) {
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 }

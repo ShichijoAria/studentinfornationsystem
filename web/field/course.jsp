@@ -32,7 +32,7 @@
         <div class="column">
             <div class="ui black basic horizontal label">课程编号</div>
             <div class="ui input">
-                <input type="text" name="id" value="${id}">
+                <input type="number" name="id" value="${id}">
             </div>
         </div>
         <div class="column">

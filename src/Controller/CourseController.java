@@ -26,6 +26,8 @@ public class CourseController extends BaseServlet{
         result=courseService.insert(courseEntity);
         if(result>0) {
             resp.sendRedirect("/SIS/course/field?resourceId="+courseEntity.getId());
+        }else {
+            resp.sendError(404);
         }
     }
 

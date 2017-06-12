@@ -12,6 +12,8 @@
     String viewName="course";
 %>
 <%@ include file="head.jsp"  %>
+                <div class="column">
+                    <div class="ui right pointing black basic label">
                         课程编号
                     </div>
                     <div class="ui input">

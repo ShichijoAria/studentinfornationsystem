@@ -1,0 +1,3 @@
+.ui.disabled.input:hover{
+    cursor: not-allowed!important;
+}

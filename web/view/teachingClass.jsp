@@ -12,8 +12,10 @@
     String viewName="teachingClass";
 %>
 <%@ include file="head.jsp"  %>
-课程名称
-</div>
+<div class="column">
+    <div class="ui right pointing black basic label">
+        课程名称
+    </div>
 <div class="ui input">
     <input class="input" type="text" name="searchCouName" value="${param.searchCouName}">
     <i class="icon"></i>
@@ -75,10 +77,14 @@
                         <input type="checkbox" name="switch" id="checkall"><label></label>
                     </div>
                 </th>
-                <th class="seven wide">课程名称</th>
-                <th class="seven wide">教师名称</th>
+                <c:if test="${sessionScope.userType!=\"3\"}">
+                    <th class="eight wide">课程名称</th>
+                    <th class="eight wide">教师名称</th>
+                </c:if>
                 <c:if test="${sessionScope.userType==\"3\"}">
-                <th class="two wide">操作</th>
+                    <th class="seven wide">课程名称</th>
+                    <th class="seven wide">教师名称</th>
+                    <th class="two wide">操作</th>
                 </c:if>
             </tr>
             </thead>

@@ -59,6 +59,11 @@ public class TeachingClassDao extends BaseDao{
         return null;
     }
 
+    public long count(long id){
+        String sql="SELECT count(*) from t_teachingClass where teaid="+id;
+        return this.getLong(sql);
+    }
+
     public int update(TeachingClassEntity teachingClassEntity,long id){
         String sql="update t_teachingclass set couid=? ,teaid=? where id=?";
         return this.executeUpdate(sql,teachingClassEntity.getCouId(),teachingClassEntity.getTeaId(),id);

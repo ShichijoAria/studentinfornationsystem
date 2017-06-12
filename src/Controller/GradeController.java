@@ -20,8 +20,11 @@ public class GradeController extends BaseServlet{
 
     private void view(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String curPage=req.getParameter("curPage");
-        GradeService gradeService=new GradeService(new GradeEntity());
         List<GradeEntity> list=new ArrayList<GradeEntity>();
+        String teaName=req.getParameter("searchTeaName");
+        String stuName=req.getParameter("searchStuName");
+        String couName=req.getParameter("searchCouName");
+        GradeService gradeService=new GradeService(new GradeEntity(teaName,couName,stuName));
         String userType=(String)req.getSession().getAttribute("userType");
         long userId=(long)req.getSession().getAttribute("userId");
         if(userType.equals("1")) {
@@ -37,6 +40,9 @@ public class GradeController extends BaseServlet{
         initialize(page,list.size(),gradeService,curPage);
         req.setAttribute("page",page);
         req.setAttribute("list",list);
+        req.setAttribute("searchTeaName",teaName);
+        req.setAttribute("searchStuName",stuName);
+        req.setAttribute("searchCouName",couName);
         req.getRequestDispatcher("/view/grade.jsp").forward(req, resp);
     }
 
@@ -70,6 +76,19 @@ public class GradeController extends BaseServlet{
             resp.sendError(404);
     }
 
+    private void update(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        GradeService gradeService=new GradeService();
+        String id=req.getParameter("resourceId");
+        float grade=Float.parseFloat(req.getParameter("grade"));
+        int result=gradeService.update(grade,id);
+        if(result>0) {
+            resp.sendRedirect("/SIS/grade/field?resourceId="+id);
+        }
+        else {
+            resp.sendError(404);
+        }
+    }
+
     public GradeEntity getGrade(HttpServletRequest req, HttpServletResponse resp){
         long stuId= (long)req.getSession().getAttribute("userId");
         long classId= new MyUtil().getLong(req.getParameter("classId"));
@@ -77,6 +96,7 @@ public class GradeController extends BaseServlet{
     }
 
     public void setGrade(HttpServletRequest req, HttpServletResponse resp,GradeEntity gradeEntity){
+        req.setAttribute("id",gradeEntity.getId());
         req.setAttribute("stuName",gradeEntity.getStuName());
         req.setAttribute("teaName",gradeEntity.getTeaName());
         req.setAttribute("couName",gradeEntity.getCouName());

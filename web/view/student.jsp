@@ -12,8 +12,10 @@
     String viewName="student";
 %>
 <%@ include file="head.jsp"  %>
-学生学号
-</div>
+<div class="column">
+    <div class="ui right pointing black basic label">
+        学生学号
+    </div>
 <div class="ui input">
     <input class="input" type="text" name="searchId" value="${param.searchId}">
     <i class="icon"></i>

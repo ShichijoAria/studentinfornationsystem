@@ -1,5 +1,7 @@
 package Controller;
 
+import dao.GradeDao;
+import dao.TeachingClassDao;
 import dao.UserDao;
 import entity.UserEntity;
 import service.impl.UserService;
@@ -46,9 +48,19 @@ public class DesktopController extends BaseServlet{
     }
 
     private void welcome(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        req.setAttribute("countAll",new UserDao().countAll());
-        req.setAttribute("list",new UserDao().statistical());
-        req.setAttribute("statistical",new UserDao().count());
+        String userType=(String)req.getSession().getAttribute("userType");
+        long id=(long)req.getSession().getAttribute("userId");
+        if(userType.equals("1")) {
+            req.setAttribute("countAll", new UserDao().countAll());
+            req.setAttribute("list", new UserDao().statistical());
+            req.setAttribute("statistical", new UserDao().count());
+        }else if(userType.equals("2")){
+            req.setAttribute("countClass",new TeachingClassDao().count(id));
+            req.setAttribute("countGrades",new GradeDao().countGrades(id));
+        }else if(userType.equals("3")){
+            req.setAttribute("countCourses",new GradeDao().countCourses(id));
+            req.setAttribute("list",new GradeDao().getGrades(id));
+        }
         req.getRequestDispatcher("/welcome/welcome.jsp").forward(req, resp);
     }
 
