@@ -22,8 +22,6 @@ public class StudentDao extends BaseDao{
             sql +=search.getName()==null?"":search.getName();
             sql +="%' and gender like '%";
             sql +=search.getGender()==null?"":search.getGender();
-            sql +="%' and faculty like '%";
-            sql +=search.getFaculty()==null?"":search.getFaculty();
             sql +="%'";
         }
         List<StudentEntity> list=new ArrayList<StudentEntity>();

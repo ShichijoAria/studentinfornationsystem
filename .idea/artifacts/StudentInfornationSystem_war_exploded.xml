@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-5.1.41-bin" />
           <element id="library" level="project" name="jstl" />
+          <element id="library" level="project" name="commons-fileupload-1.2.2" />
         </element>
       </element>
     </root>

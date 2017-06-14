@@ -76,6 +76,10 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
+        <url-pattern>/desktop/welcome</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
         <url-pattern>/user/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
@@ -85,6 +89,14 @@
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/teacher/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/teachingClass/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/grade/*</url-pattern>
     </filter-mapping>
 
     <filter>

@@ -16,6 +16,8 @@ import java.util.List;
  * Created by Ace on 2017/5/22.
  */
 public class BaseServlet extends HttpServlet{
+    private String fileName = "xlsx";
+
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String methodName=req.getPathInfo();
@@ -70,5 +72,6 @@ public class BaseServlet extends HttpServlet{
             page.setPages(pages);
         }
     }
+
 
 }
